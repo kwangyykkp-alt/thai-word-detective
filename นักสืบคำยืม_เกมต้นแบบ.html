@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>นักสืบคำยืม : ภารกิจตามหาต้นตอคำ</title>
+<style>
+*{box-sizing:border-box} body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(135deg,#f7f3ff,#eef8ff);color:#222}
+.app{max-width:900px;margin:auto;min-height:100vh;padding:18px}
+.card{background:#fff;border-radius:24px;padding:26px;box-shadow:0 10px 35px #00000012;margin-top:18px}
+h1{font-size:clamp(28px,6vw,48px);margin:8px 0;color:#51359a}.sub{color:#666}
+button{border:0;border-radius:15px;padding:14px 18px;font-size:17px;font-weight:700;cursor:pointer;background:#6546c7;color:#fff}
+button.secondary{background:#eee;color:#333} button:disabled{opacity:.5;cursor:not-allowed}
+.start{text-align:center;padding:45px 20px}.badge{display:inline-block;padding:8px 14px;border-radius:99px;background:#eee7ff;color:#5735aa;font-weight:700}
+input{width:100%;padding:15px;border:2px solid #ddd;border-radius:14px;font-size:17px;margin:12px 0 20px}
+.top{display:flex;justify-content:space-between;gap:10px;align-items:center}.progress{height:12px;background:#eee;border-radius:99px;overflow:hidden;margin:16px 0}.bar{height:100%;background:#7653d8;width:0;transition:.3s}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:20px}.answer{background:#f5f5f8;color:#222;text-align:left;border:2px solid transparent}.answer:hover{border-color:#7653d8}.answer.correct{background:#dff7e7;border-color:#32a866}.answer.wrong{background:#ffe3e3;border-color:#d95353}
+.feedback{min-height:32px;margin:18px 0;font-weight:700}.score{font-size:18px}.hidden{display:none}.result{text-align:center}.big{font-size:60px}
+@media(max-width:600px){.answers{grid-template-columns:1fr}.card{padding:20px}.top{align-items:flex-start}}
+</style>
+</head>
+<body>
+<div class="app">
+  <div id="start" class="card start">
+    <div class="badge">ภาษาไทย • ม.2</div>
+    <h1>🔎 นักสืบคำยืม</h1>
+    <p class="sub">ภารกิจตามหาต้นตอคำจากภาษาต่างประเทศ</p>
+    <p>ตามหาที่มาของคำจาก <b>๗ กลุ่มภาษา</b><br>บาลี–สันสกฤต • เขมร • จีน • อังกฤษ • ญี่ปุ่น • เกาหลี • ชวา–มลายู</p>
+    <input id="player" placeholder="ชื่อผู้เล่น">
+    <button onclick="startGame()">เริ่มภารกิจ 🎮</button>
+  </div>
+
+  <div id="game" class="card hidden">
+    <div class="top">
+      <div>🕵️ <b id="who">นักสืบ</b></div>
+      <div class="score">⭐ <span id="score">0</span> &nbsp; ❤️ <span id="lives">3</span></div>
+    </div>
+    <div class="progress"><div class="bar" id="bar"></div></div>
+    <div><span id="qno"></span> / <span id="total"></span></div>
+    <h2 id="question"></h2>
+    <div class="answers" id="answers"></div>
+    <div class="feedback" id="feedback"></div>
+    <button id="next" class="hidden" onclick="nextQuestion()">ไปต่อ ➜</button>
+  </div>
+
+  <div id="result" class="card result hidden">
+    <div class="big" id="emoji">🏆</div>
+    <h1>ภารกิจเสร็จสิ้น!</h1>
+    <h2 id="resultText"></h2>
+    <p id="detail"></p>
+    <button onclick="location.reload()">เล่นอีกครั้ง 🔄</button>
+  </div>
+</div>
+
+<script>
+const questions=[
+ {w:"ก๋วยเตี๋ยว",a:"จีน",o:["จีน","อังกฤษ","ญี่ปุ่น","เขมร"]},
+ {w:"เต้าหู้",a:"จีน",o:["เกาหลี","จีน","ชวา–มลายู","อังกฤษ"]},
+ {w:"ซูชิ",a:"ญี่ปุ่น",o:["จีน","ญี่ปุ่น","เกาหลี","อังกฤษ"]},
+ {w:"กิโมโน",a:"ญี่ปุ่น",o:["ญี่ปุ่น","เขมร","จีน","ชวา–มลายู"]},
+ {w:"คาราโอเกะ",a:"ญี่ปุ่น",o:["เกาหลี","อังกฤษ","ญี่ปุ่น","จีน"]},
+ {w:"กิมจิ",a:"เกาหลี",o:["เกาหลี","ญี่ปุ่น","จีน","อังกฤษ"]},
+ {w:"โซล",a:"เกาหลี",o:["จีน","เกาหลี","ญี่ปุ่น","บาลี–สันสกฤต"]},
+ {w:"คอมพิวเตอร์",a:"อังกฤษ",o:["อังกฤษ","จีน","เขมร","ญี่ปุ่น"]},
+ {w:"ฟุตบอล",a:"อังกฤษ",o:["ชวา–มลายู","อังกฤษ","จีน","เกาหลี"]},
+ {w:"อินเทอร์เน็ต",a:"อังกฤษ",o:["อังกฤษ","ญี่ปุ่น","จีน","เขมร"]},
+ {w:"กษัตริย์",a:"บาลี–สันสกฤต",o:["เขมร","บาลี–สันสกฤต","จีน","ชวา–มลายู"]},
+ {w:"ปัญญา",a:"บาลี–สันสกฤต",o:["อังกฤษ","เกาหลี","บาลี–สันสกฤต","เขมร"]},
+ {w:"เสด็จ",a:"เขมร",o:["จีน","เขมร","ญี่ปุ่น","อังกฤษ"]},
+ {w:"บำเพ็ญ",a:"เขมร",o:["ชวา–มลายู","เขมร","บาลี–สันสกฤต","เกาหลี"]},
+ {w:"กริช",a:"ชวา–มลายู",o:["ญี่ปุ่น","จีน","ชวา–มลายู","อังกฤษ"]},
+ {w:"บุหงา",a:"ชวา–มลายู",o:["ชวา–มลายู","เขมร","เกาหลี","บาลี–สันสกฤต"]},
+ {w:"สตางค์",a:"อังกฤษ",o:["อังกฤษ","จีน","ชวา–มลายู","ญี่ปุ่น"]},
+ {w:"บะหมี่",a:"จีน",o:["จีน","เกาหลี","เขมร","อังกฤษ"]},
+ {w:"ซามูไร",a:"ญี่ปุ่น",o:["จีน","ญี่ปุ่น","เกาหลี","ชวา–มลายู"]},
+ {w:"โคเรียน",a:"เกาหลี",o:["เกาหลี","อังกฤษ","จีน","ญี่ปุ่น"]}
+];
+let qs=[],i=0,score=0,lives=3,answered=false,correct=0;
+function startGame(){
+ const name=document.getElementById("player").value.trim()||"นักสืบ";
+ document.getElementById("who").textContent=name;
+ document.getElementById("start").classList.add("hidden");
+ document.getElementById("game").classList.remove("hidden");
+ qs=[...questions].sort(()=>Math.random()-.5);
+ document.getElementById("total").textContent=qs.length; showQuestion();
+}
+function showQuestion(){
+ answered=false; const q=qs[i];
+ document.getElementById("qno").textContent=i+1;
+ document.getElementById("bar").style.width=((i)/qs.length*100)+"%";
+ document.getElementById("question").textContent=`คำว่า “${q.w}” มาจากภาษาใด?`;
+ const box=document.getElementById("answers"); box.innerHTML="";
+ document.getElementById("feedback").textContent="";
+ document.getElementById("next").classList.add("hidden");
+ q.o.forEach(x=>{const b=document.createElement("button");b.className="answer";b.textContent=x;b.onclick=()=>answer(b,x,q.a);box.appendChild(b)});
+}
+function answer(btn,choice,ans){
+ if(answered)return; answered=true;
+ document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
+ if(choice===ans){btn.classList.add("correct");score+=10;correct++;document.getElementById("feedback").textContent="✅ ถูกต้อง! +10 คะแนน";}
+ else{btn.classList.add("wrong");lives--;document.getElementById("lives").textContent=lives;document.querySelectorAll(".answer").forEach(b=>{if(b.textContent===ans)b.classList.add("correct")});document.getElementById("feedback").textContent=`❌ ยังไม่ถูก คำตอบคือ “${ans}”`;}
+ document.getElementById("score").textContent=score;
+ if(lives<=0){setTimeout(endGame,650);return}
+ document.getElementById("next").classList.remove("hidden");
+}
+function nextQuestion(){i++; if(i>=qs.length)endGame(); else showQuestion()}
+function endGame(){
+ document.getElementById("game").classList.add("hidden");document.getElementById("result").classList.remove("hidden");
+ document.getElementById("bar").style.width="100%";
+ const pct=Math.round(correct/qs.length*100);
+ document.getElementById("emoji").textContent=pct>=80?"🏆":pct>=60?"⭐":"💪";
+ document.getElementById("resultText").textContent=`ได้ ${score} คะแนน`;
+ document.getElementById("detail").textContent=`ตอบถูก ${correct} จาก ${qs.length} ข้อ • ความแม่นยำ ${pct}%`;
+}
+</script>
+</body>
+</html>
