@@ -3,40 +3,49 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<title>นักสืบคำยืม</title>
+<title>นักสืบคำยืม • ภารกิจล่าร่องรอย</title>
 <style>
 *{box-sizing:border-box}
-body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(135deg,#f4efff,#eef8ff);color:#292535}
+:root{
+ --ink:#292535;--muted:#6e6978;--purple:#6545c5;--purple2:#8b70e8;
+ --bg:#f4efff;--card:#fff;--line:#e6e1f0;--gold:#e1a72b;
+ --good:#2f9d61;--bad:#d65b5b;--blue:#4b8bd8;
+}
+body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(135deg,#f4efff,#eef8ff);color:var(--ink)}
 .app{max-width:900px;margin:auto;padding:14px}
 .screen{display:none}.on{display:block}
-.card{background:#fff;border-radius:26px;padding:22px;box-shadow:0 12px 35px rgba(64,48,120,.10);margin-top:14px}
-.hero{text-align:center;padding:40px 20px}.logo{font-size:64px}
+.card{background:var(--card);border-radius:26px;padding:22px;box-shadow:0 12px 35px rgba(64,48,120,.10);margin-top:14px}
+.hero{text-align:center;padding:38px 20px}.logo{font-size:64px}
 .eyebrow,.pill{display:inline-block;padding:7px 13px;border-radius:99px;background:#eee7ff;color:#5837a6;font-weight:800}
-h1{font-size:clamp(32px,7vw,52px);color:#52349b;margin:10px 0}h2{margin:8px 0}
-.muted{color:#6e6978;line-height:1.65}
-input{width:100%;padding:14px;border:2px solid #e4e0ee;border-radius:15px;margin:18px 0;font-size:17px}
+h1{font-size:clamp(32px,7vw,52px);color:#52349b;margin:10px 0}
+h2{margin:8px 0}.muted{color:var(--muted);line-height:1.65}
+input{width:100%;padding:14px;border:2px solid var(--line);border-radius:15px;margin:18px 0;font-size:17px}
 button{font:inherit;border:0;border-radius:15px;padding:13px 17px;cursor:pointer;font-weight:800}
-.primary{background:#6545c5;color:#fff}.secondary{background:#eeeaf3;color:#3b3745}
-.head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.primary{background:var(--purple);color:#fff}.secondary{background:#eeeaf3;color:#3b3745}
 .grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
-.stage{width:100%;text-align:left;background:#fff;border:2px solid #e9e5f0;min-height:150px;position:relative}
-.stage.open{border-color:#cbbcf0}.stage:disabled{opacity:.45}.stage .icon{font-size:34px}
-.lock{position:absolute;right:10px;top:10px}.stars{color:#dca52a;margin-top:7px}
-.stats{display:flex;gap:7px}.stat{background:#f2eff7;border-radius:99px;padding:7px 10px}
-.barbg{height:10px;background:#eeeaf4;border-radius:99px;margin:15px 0}
-.bar{height:100%;background:#7452d2;border-radius:99px;width:0;transition:.25s}
-.case{font-weight:850;color:#6545c5}
-.level{display:inline-block;font-size:12px;background:#f0edf7;border-radius:99px;padding:5px 9px;color:#625a72;margin-top:10px}
-.question{text-align:center;font-size:clamp(20px,4.5vw,28px);font-weight:850;line-height:1.45;margin-top:10px}
-.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
-.answer{background:#f5f3f8;color:#292535;min-height:64px;border:2px solid transparent}
-.answer:hover{border-color:#cbbcf0}.answer.correct{background:#dff6e7;border-color:#41ae72}
-.answer.wrong{background:#ffe3e3;border-color:#db5c5c}
-.feedback{min-height:48px;background:#f7f5fa;border-radius:13px;padding:11px;margin-top:13px;font-weight:750;text-align:left;line-height:1.5}
+.stage{width:100%;text-align:left;background:#fff;border:2px solid #e9e5f0;min-height:155px;position:relative}
+.stage.open{border-color:#cbbcf0}.stage:disabled{opacity:.48}.stage .icon{font-size:34px}
+.lock{position:absolute;right:10px;top:10px}.stars{color:var(--gold);margin-top:7px}
+.head{display:flex;justify-content:space-between;gap:10px;align-items:center}
+.stats{display:flex;gap:7px;flex-wrap:wrap}.stat{background:#f2eff7;border-radius:99px;padding:7px 10px}
+.barbg{height:10px;background:#eeeaf4;border-radius:99px;margin:14px 0}.bar{height:100%;background:var(--purple2);border-radius:99px;width:0;transition:.25s}
+.case{font-weight:900;color:var(--purple)}.mission{font-size:13px;color:#625a72;margin-top:5px}
+.scene{background:#f8f6fc;border:2px dashed #d9d1eb;border-radius:18px;padding:16px;margin-top:14px}
+.scene strong{color:#52349b}.evidence{display:flex;gap:8px;flex-wrap:wrap;margin-top:11px}
+.ev{background:#fff;border:1px solid #ddd6eb;border-radius:99px;padding:7px 10px;font-size:14px}
+.question{text-align:left;font-size:clamp(20px,4.5vw,27px);font-weight:900;line-height:1.45;margin-top:18px}
+.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:16px}
+.answer{background:#f5f3f8;color:var(--ink);min-height:72px;border:2px solid transparent;text-align:left}
+.answer:hover{border-color:#cbbcf0}.answer.correct{background:#dff6e7;border-color:#41ae72}.answer.wrong{background:#ffe3e3;border-color:#db5c5c}
+.feedback{min-height:48px;background:#f7f5fa;border-radius:13px;padding:11px;margin-top:13px;font-weight:750;text-align:left;line-height:1.55}
 .result{text-align:center}.bigscore{font-size:54px;font-weight:900;color:#52349b}
 .tip{background:#fff7d9;border-radius:14px;padding:12px;margin:15px 0;text-align:left}
+.badges{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin:12px 0}.badge{background:#f5f1ff;border:1px solid #ddd2fa;border-radius:14px;padding:8px 10px}
+.xp{font-weight:900;color:#6545c5}
 .note{font-size:13px;color:#777;line-height:1.5;margin-top:16px}
-@media(max-width:620px){.grid,.answers{grid-template-columns:1fr}.card{padding:18px}.hero{padding:30px 15px}}
+.smallbtn{padding:9px 12px;font-size:14px}
+.choice-tag{font-size:12px;color:#6e6978;margin-top:4px}
+@media(max-width:620px){.grid,.answers{grid-template-columns:1fr}.card{padding:18px}.hero{padding:30px 15px}.answer{min-height:62px}}
 </style>
 </head>
 <body>
@@ -44,13 +53,18 @@ button{font:inherit;border:0;border-radius:15px;padding:13px 17px;cursor:pointer
 
 <section id="home" class="screen on">
 <div class="card hero">
-<div class="logo">🔎</div>
-<span class="eyebrow">เกมการเรียนรู้ภาษาไทย</span>
+<div class="logo">🕵️</div>
+<span class="eyebrow">Gamified Learning • ภาษาไทย</span>
 <h1>นักสืบคำยืม</h1>
-<p class="muted">ตามหาต้นตอคำด้วย “หลักฐาน”<br>ไม่ใช่การเดาจากชื่อด่าน</p>
+<p class="muted">ภารกิจครั้งนี้ไม่ใช่การท่องจำ<br><b>เก็บหลักฐาน → ตัดตัวเลือก → ปิดคดี</b></p>
 <input id="name" maxlength="30" placeholder="พิมพ์ชื่อผู้เล่น">
-<button class="primary" onclick="start()">เริ่มภารกิจ 🎮</button>
-<p class="note">ตัวเลือกจะสลับตำแหน่งทุกข้อ และโจทย์จะค่อย ๆ ยากขึ้น</p>
+<button class="primary" onclick="start()">รับภารกิจ 🎮</button>
+<div class="badges">
+<span class="badge">🔎 สะสมหลักฐาน</span>
+<span class="badge">⭐ เก็บ XP</span>
+<span class="badge">🏆 ปลดล็อกแฟ้ม</span>
+</div>
+<p class="note">ทุกด่านใช้สถานการณ์และคำที่แตกต่างกัน เด็กต้องนำหลักภาษาไปใช้ ไม่ใช่เดาคำตอบจากชื่อด่าน</p>
 </div>
 </section>
 
@@ -60,26 +74,35 @@ button{font:inherit;border:0;border-radius:15px;padding:13px 17px;cursor:pointer
 <div><small>นักสืบ</small><br><span id="player" class="pill"></span></div>
 <button class="secondary" onclick="home()">ออก</button>
 </div>
-<h2>🗺️ แผนที่แฟ้มคดี</h2>
-<p class="muted">แต่ละแฟ้มมี 5 ภารกิจ ต้องได้อย่างน้อย 80% จึงปลดล็อกแฟ้มถัดไป</p>
-<div id="mapgrid" class="grid"></div>
-<p class="note">โจทย์เน้นการใช้หลักสังเกต รูปคำ และบริบท เพื่อให้เด็กต้องคิดก่อนตอบ</p>
+<h2>🗺️ เมืองแห่งคดีคำยืม</h2>
+<p class="muted">แต่ละแฟ้มมี 4 ภารกิจ ผ่านที่ 75% เพื่อเปิดแฟ้มถัดไป</p>
+<div class="stats">
+<span class="stat">✨ XP <b id="totalxp">0</b></span>
+<span class="stat">🏅 แฟ้มผ่าน <b id="passed">0</b></span>
+</div>
+<div id="mapgrid" class="grid" style="margin-top:14px"></div>
+<p class="note">กติกานักสืบ: อย่ารีบตัดสินจากหลักฐานเดียว ให้ดู “รูปคำ + บริบท + วิธีใช้” ตามที่โจทย์ให้มา</p>
 </div>
 </section>
 
 <section id="quiz" class="screen">
 <div class="card">
 <div class="head">
-<button class="secondary" onclick="showMap()">← แผนที่</button>
-<div class="stats"><span class="stat">⭐ <b id="score">0</b></span><span class="stat">❤️ <b id="lives">3</b></span></div>
+<button class="secondary smallbtn" onclick="showMap()">← แผนที่</button>
+<div class="stats"><span class="stat">✨ <b id="score">0</b> XP</span><span class="stat">❤️ <b id="lives">3</b></span></div>
 </div>
 <div class="barbg"><div id="bar" class="bar"></div></div>
 <div class="case" id="stageTitle"></div>
-<div class="level" id="level"></div>
+<div class="mission" id="mission"></div>
+<div class="scene">
+<strong>แฟ้มหลักฐาน</strong>
+<div id="story" style="margin-top:6px;line-height:1.6"></div>
+<div id="evidence" class="evidence"></div>
+</div>
 <div class="question" id="question"></div>
 <div id="answers" class="answers"></div>
 <div id="feedback" class="feedback"></div>
-<div style="text-align:center"><button id="next" class="primary" style="display:none;margin-top:12px" onclick="nextQ()">ไปต่อ ➜</button></div>
+<div style="text-align:center"><button id="next" class="primary" style="display:none;margin-top:12px" onclick="nextQ()">เก็บหลักฐานแล้ว ไปต่อ ➜</button></div>
 </div>
 </section>
 
@@ -90,111 +113,158 @@ button{font:inherit;border:0;border-radius:15px;padding:13px 17px;cursor:pointer
 <p id="resstage" class="muted"></p>
 <div id="resscore" class="bigscore"></div>
 <p id="resdetail"></p>
+<div id="resbadges" class="badges"></div>
 <div id="tip" class="tip"></div>
 <button class="primary" onclick="showMap()">กลับแผนที่ 🗺️</button>
 </div>
 </section>
-
 </div>
 
 <script>
-const stages=[{"icon":"📜","title":"แฟ้มคดีที่ 1","subtitle":"แยกบาลี–สันสกฤตด้วยรูปคำ","questions":[{"level":"ง่าย","q":"ถ้าพบคำที่มี “ฬ” ควรตั้งข้อสังเกตใดก่อน?","choices":["อาจเป็นคำบาลี","อาจเป็นคำสันสกฤต","อาจเป็นคำจีน","อาจเป็นคำอังกฤษ"],"a":0,"e":"บาลีมักพบ ฬ ส่วนสันสกฤตไม่นิยมใช้ ฬ จึงใช้ลักษณะนี้เป็นเบาะแสได้"},{"level":"ง่าย","q":"ข้อใดเป็นเบาะแสที่ช่วยชี้ไปทางสันสกฤตได้มากกว่า?","choices":["มี ฬ","มี ศ หรือ ษ","เป็นคำ 1 พยางค์","มีวรรณยุกต์"],"a":1,"e":"การมี ศ หรือ ษ เป็นหนึ่งในลักษณะที่ใช้สังเกตคำสันสกฤต"},{"level":"กลาง","q":"คำคู่ใดควรใช้เป็นตัวอย่างในการเปรียบเทียบ “อิ” กับ “ฤ”","choices":["กีฬากับกษัตริย์","อิทธิ กับ ฤทธิ์","ปัญญากับศึกษา","ศิลปะกับนาฬิกา"],"a":1,"e":"หลักเปรียบเทียบหนึ่งคือ อิ/อุ ในบาลีมักสัมพันธ์กับ ฤ ในสันสกฤต"},{"level":"กลาง","q":"ถ้าคำหนึ่งมีพยัญชนะควบกล้ำ ควรเอนเอียงไปทางใดมากกว่า?","choices":["บาลี","สันสกฤต","จีน","เขมร"],"a":1,"e":"สันสกฤตมีพยัญชนะประสมและควบกล้ำให้เห็นได้มากกว่าบาลี"},{"level":"ยาก","q":"ข้อใดใช้ “หลายหลักร่วมกัน” เพื่อวิเคราะห์คำได้ดีที่สุด?","choices":["ดูจำนวนพยางค์อย่างเดียว","ดูตัวอักษรและรูปคำหลายจุดร่วมกัน","เดาจากความหมายของคำอย่างเดียว","ดูว่าคำคุ้นหูหรือไม่"],"a":1,"e":"การวิเคราะห์คำควรใช้หลายเบาะแสร่วมกัน ไม่ควรตัดสินจากลักษณะเดียว"}]},{"icon":"🏛️","title":"แฟ้มคดีที่ 2","subtitle":"แกะรอยคำเขมรจากรูปคำและการใช้","questions":[{"level":"ง่าย","q":"ถ้าพบคำที่ลงท้ายหรือสะกดด้วย จ ญ ร ล ควรใช้ข้อมูลนี้อย่างไร?","choices":["ใช้เป็นเบาะแสหนึ่งของคำเขมร","สรุปได้ทันทีว่าเป็นคำจีน","สรุปได้ทันทีว่าเป็นคำอังกฤษ","ไม่เกี่ยวกับการวิเคราะห์คำ"],"a":0,"e":"จ ญ ร ล เป็นกลุ่มตัวอักษรที่พบเป็นลักษณะสังเกตของคำเขมร"},{"level":"ง่าย","q":"คำเขมรในภาษาไทยมีลักษณะใดที่พบได้บ่อย?","choices":["เป็นคำหลายพยางค์เสมอ","มีการแผลงคำบางรูป","ต้องมีวรรณยุกต์ทุกคำ","ต้องเป็นคำทับศัพท์"],"a":1,"e":"คำเขมรบางคำมีการแผลงรูป เช่น ข→กระ ผ→ประ และ ประ→บรร"},{"level":"กลาง","q":"ถ้าเห็นคำขึ้นต้นด้วย “บรร-” ควรคิดอย่างไร?","choices":["ใช้เป็นเบาะแสหนึ่ง แล้วดูหลักอื่นประกอบ","แปลว่าเป็นคำจีนแน่นอน","แปลว่าเป็นคำอังกฤษแน่นอน","ไม่ต้องดูส่วนอื่นของคำ"],"a":0,"e":"บรร- เป็นรูปที่พบจากการแผลงคำบางคำ จึงใช้เป็นเบาะแส แต่ไม่ควรตัดสินจากจุดเดียว"},{"level":"กลาง","q":"สถานการณ์ใดช่วยให้เรานึกถึงคำเขมรได้มากขึ้น?","choices":["พบคำในกลุ่มราชาศัพท์","พบชื่ออาหารจีน","พบศัพท์วิทยาศาสตร์","พบคำทับศัพท์ภาษาอังกฤษ"],"a":0,"e":"คำเขมรจำนวนหนึ่งถูกใช้เป็นราชาศัพท์ จึงเป็นบริบทที่ช่วยประกอบการวิเคราะห์"},{"level":"ยาก","q":"ข้อใดเป็นวิธีคิดที่เหมาะที่สุดเมื่อวิเคราะห์คำเขมร?","choices":["เห็นคำว่า บรร แล้วตอบทันที","ดูรูปคำและบริบทประกอบกัน","ดูจำนวนตัวอักษรอย่างเดียว","เลือกคำที่อ่านยากที่สุด"],"a":1,"e":"รูปคำและบริบทควรใช้ร่วมกัน เพื่อไม่ให้การเดาอาศัยเบาะแสเพียงจุดเดียว"}]},{"icon":"🏮","title":"แฟ้มคดีที่ 3","subtitle":"ตามรอยคำจีนจากชีวิตประจำวัน","questions":[{"level":"ง่าย","q":"คำจีนที่เข้ามาในภาษาไทยมักเกี่ยวข้องกับเรื่องใด?","choices":["อาหารและของใช้","เฉพาะราชาศัพท์","เฉพาะศัพท์วิทยาศาสตร์","เฉพาะชื่อสถานที่"],"a":0,"e":"คำจีนในภาษาไทยพบมากในชื่ออาหาร ของใช้ เครื่องแต่งกาย และเรื่องการค้า"},{"level":"ง่าย","q":"ถ้าพบคำที่มีวรรณยุกต์และเป็นคำโดด ควรทำอย่างไร?","choices":["ใช้เป็นเบาะแสหนึ่งของคำจีน","สรุปว่าเป็นคำบาลี","สรุปว่าเป็นคำสันสกฤต","ตัดสินว่าเป็นคำอังกฤษ"],"a":0,"e":"คำจีนมีลักษณะคล้ายคำไทยตรงที่เป็นคำโดดและมีวรรณยุกต์ จึงใช้เป็นเบาะแสได้"},{"level":"กลาง","q":"บริบทใดมีโอกาสพบคำจีนมากกว่า?","choices":["รายการอาหาร","บทสวด","คำอธิบายไวยากรณ์","ชื่อหน่วยงานราชการ"],"a":0,"e":"คำจีนจำนวนมากเข้ามาในภาษาไทยผ่านอาหารและการค้า"},{"level":"กลาง","q":"ถ้าคำหนึ่งมีการเปลี่ยนเสียงและรูปให้เข้ากับภาษาไทย เราควรคิดอย่างไร?","choices":["อาจเป็นคำยืมที่ถูกปรับให้เข้ากับภาษาไทย","ต้องเป็นคำไทยแท้","ต้องเป็นคำอังกฤษ","แปลว่าไม่ใช่คำยืม"],"a":0,"e":"คำยืมจากจีนบางคำถูกปรับเสียงและรูปจนกลมกลืนกับภาษาไทย"},{"level":"ยาก","q":"ข้อใดใช้หลักฐานได้รอบด้านที่สุดในการสืบคำจีน?","choices":["ดูวรรณยุกต์อย่างเดียว","ดูทั้งรูปคำและบริบทการใช้","ดูความยาวของคำอย่างเดียว","ดูว่าคำมีความหมายดีหรือไม่"],"a":1,"e":"ควรดูทั้งรูปคำและบริบท เช่น อาหาร ของใช้ หรือการค้า แล้วจึงสรุป"}]},{"icon":"🌍","title":"แฟ้มคดีที่ 4","subtitle":"อังกฤษ: ทับศัพท์ บัญญัติศัพท์ หรือแปลศัพท์?","questions":[{"level":"ง่าย","q":"ถ้าไทยนำเสียงของคำต่างประเทศมาใช้ใกล้เคียงเดิม วิธีนี้เรียกว่าอะไร?","choices":["ทับศัพท์","บัญญัติศัพท์","แปลศัพท์","แผลงคำ"],"a":0,"e":"การทับศัพท์คือการถ่ายทอดเสียงและตัวอักษรของคำเดิมมาใช้ในภาษาไทย"},{"level":"ง่าย","q":"ถ้าสร้างคำไทยใหม่เพื่อใช้แทนแนวคิดของคำต่างประเทศ วิธีนี้คืออะไร?","choices":["ทับศัพท์","บัญญัติศัพท์","ยืมเสียง","แผลงคำ"],"a":1,"e":"บัญญัติศัพท์คือการสร้างคำไทยขึ้นใหม่จากแนวคิดหรือความหมายของคำเดิม"},{"level":"กลาง","q":"ถ้าแปลความหมายของคำต่างประเทศออกมาเป็นคำไทยโดยตรง วิธีนี้คืออะไร?","choices":["ทับศัพท์","บัญญัติศัพท์","แปลศัพท์","ยืมคำตรง"],"a":2,"e":"การแปลศัพท์คือการสร้างคำไทยที่มีความหมายตรงกับคำเดิม"},{"level":"กลาง","q":"“BLACKBOARD → กระดานดำ” แสดงวิธีใด?","choices":["ทับศัพท์","บัญญัติศัพท์","แปลศัพท์","แผลงคำ"],"a":2,"e":"เป็นการถ่ายทอดความหมายของคำเดิมออกมาเป็นคำไทย"},{"level":"ยาก","q":"ถ้าเห็นคำไทยที่ไม่คล้ายเสียงเดิม แต่ความหมายตรงกับคำต่างประเทศ ควรสงสัยวิธีใด?","choices":["ทับศัพท์","บัญญัติศัพท์","แปลศัพท์","ยืมเสียง"],"a":2,"e":"เมื่อเสียงไม่คล้ายเดิม แต่ความหมายตรงกัน มีแนวโน้มเป็นการแปลศัพท์"}]},{"icon":"🌴","title":"แฟ้มคดีที่ 5","subtitle":"ชวา–มลายู: ดูทั้งคำและบริบท","questions":[{"level":"ง่าย","q":"คำจากชวา–มลายูที่ใช้ในภาษาไทยมักมีลักษณะอย่างไร?","choices":["มักมี 2–3 พยางค์","ต้องมี ฬ ทุกคำ","ต้องมี ศ ษ ทุกคำ","ต้องเป็นคำทับศัพท์อังกฤษ"],"a":0,"e":"เอกสารสรุปว่าคำกลุ่มนี้ที่ยืมมาใช้มักมี 2–3 พยางค์"},{"level":"ง่าย","q":"คำชวาที่พบในภาษาไทยมักเกี่ยวข้องกับบริบทใด?","choices":["วรรณคดีและบทร้อยกรอง","เฉพาะศัพท์วิทยาศาสตร์","เฉพาะราชาศัพท์","เฉพาะกีฬา"],"a":0,"e":"คำชวาที่ไทยยืมมาหลายคำพบในวรรณคดีและบทร้อยกรอง"},{"level":"กลาง","q":"คำมลายูเข้ามาในภาษาไทยเกี่ยวข้องกับสิ่งใดมาก?","choices":["การค้า ศาสนา และวัฒนธรรม","เฉพาะการทหาร","เฉพาะวิทยาศาสตร์","เฉพาะการแพทย์"],"a":0,"e":"ความสัมพันธ์ด้านการค้า ศาสนา และวัฒนธรรมเป็นช่องทางสำคัญของการยืมคำมลายู"},{"level":"กลาง","q":"ถ้าคำยืมถูกนำมาใช้โดยยังคงความหมายเดิม ควรเรียกว่าอย่างไร?","choices":["ใช้ในความหมายคงเดิม","แปลศัพท์","บัญญัติศัพท์","แผลงคำ"],"a":0,"e":"คำชวา–มลายูหลายคำถูกนำมาใช้โดยคงความหมายเดิมไว้"},{"level":"ยาก","q":"ข้อใดเป็นการใช้หลักฐานที่เหมาะกับคำชวา–มลายูที่สุด?","choices":["ดูจำนวนพยางค์อย่างเดียว","ดูรูปคำ บริบท และความหมายร่วมกัน","ดูวรรณยุกต์อย่างเดียว","เดาจากคำที่ฟังแปลกที่สุด"],"a":1,"e":"จำนวนพยางค์ช่วยได้ แต่ควรใช้ร่วมกับบริบทและความหมายเพื่อเพิ่มความแม่นยำ"}]},{"icon":"🧭","title":"แฟ้มคดีที่ 6","subtitle":"สืบเส้นทางการยืมคำจากเหตุการณ์","questions":[{"level":"ง่าย","q":"เหตุการณ์ใดทำให้ภาษาไทยมีโอกาสรับคำใหม่จากภาษาอื่น?","choices":["การติดต่อค้าขาย","การอยู่แยกจากกัน","การไม่ติดต่อกัน","การใช้ภาษาเดียวตลอด"],"a":0,"e":"การค้าขายทำให้ผู้คนติดต่อกันและเกิดการแลกเปลี่ยนคำศัพท์"},{"level":"ง่าย","q":"การเผยแผ่ศาสนาและวัฒนธรรมส่งผลต่อภาษาอย่างไร?","choices":["ทำให้เกิดการรับคำจากภาษาอื่น","ทำให้คำทุกคำเป็นคำไทยแท้","ทำให้ไม่มีคำใหม่","ทำให้คำต่างประเทศหายไป"],"a":0,"e":"ศาสนาและวัฒนธรรมเป็นหนึ่งในสาเหตุที่ทำให้ภาษาไทยรับคำจากภาษาอื่น"},{"level":"กลาง","q":"ถ้านักเรียนเรียนจากตำราภาษาต่างประเทศเป็นประจำ จะเกิดผลใดได้?","choices":["พบคำจากภาษานั้นมากขึ้น","คำไทยแท้จะหายไปทั้งหมด","ทุกคำจะกลายเป็นราชาศัพท์","จะไม่มีคำใหม่เกิดขึ้น"],"a":0,"e":"การศึกษาเป็นอีกช่องทางหนึ่งที่ทำให้ภาษาไทยรับคำศัพท์จากภาษาอื่น"},{"level":"กลาง","q":"ข้อใดจับคู่ “เหตุการณ์ → การยืมคำ” ได้เหมาะที่สุด?","choices":["การค้า → คำเกี่ยวกับสินค้าและธุรกิจ","การเรียน → ไม่มีคำใหม่","ศาสนา → ไม่มีการแลกภาษา","กีฬา → ไม่เกิดคำศัพท์"],"a":0,"e":"การค้าและธุรกิจเป็นบริบทที่ทำให้เกิดการแลกเปลี่ยนคำและคำศัพท์"},{"level":"ยาก","q":"ถ้าพบคำต่างประเทศในภาษาไทย นักสืบควรถามอะไรเพิ่มก่อนสรุป?","choices":["คำนี้เกี่ยวข้องกับบริบทใดและมีหลักฐานอะไรบ้าง","คำนี้ดูยากหรือไม่","คำนี้ยาวที่สุดหรือไม่","คำนี้มีตัวอักษรกี่ตัวเท่านั้น"],"a":0,"e":"การดูบริบทควบคู่กับรูปคำช่วยให้วิเคราะห์ที่มาของคำได้รอบด้านขึ้น"}]},{"icon":"🕵️","title":"แฟ้มคดีที่ 7","subtitle":"ภารกิจรวม: ใช้หลายหลักฐานพร้อมกัน","questions":[{"level":"กลาง","q":"พบคำหนึ่งมี ฬ และไม่มี ฤ ควรเริ่มสืบไปทางใด?","choices":["บาลี","สันสกฤต","จีน","อังกฤษ"],"a":0,"e":"ฬ เป็นเบาะแสที่ช่วยชี้ไปทางบาลี และการไม่มี ฤ ก็สอดคล้องกับหลักเปรียบเทียบ"},{"level":"กลาง","q":"พบคำที่มี ศ หรือ ษ และมีรูปควบกล้ำ ควรตั้งข้อสังเกตใด?","choices":["อาจเป็นสันสกฤต","อาจเป็นจีน","อาจเป็นเขมรแน่นอน","อาจเป็นอังกฤษแน่นอน"],"a":0,"e":"ศ/ษ และพยัญชนะประสมหรือควบกล้ำเป็นเบาะแสที่พบในคำสันสกฤต"},{"level":"กลาง","q":"พบคำที่เกี่ยวกับอาหาร มีวรรณยุกต์ และเป็นคำโดด ควรนึกถึงกลุ่มใดก่อน?","choices":["จีน","บาลี","สันสกฤต","อังกฤษ"],"a":0,"e":"อาหาร + คำโดด + วรรณยุกต์ เป็นเบาะแสที่สอดคล้องกับคำจีนในภาษาไทย"},{"level":"ยาก","q":"คำหนึ่งไม่คล้ายเสียงภาษาเดิม แต่ความหมายตรงกับคำต่างประเทศ วิธีใดน่าจะใช่?","choices":["ทับศัพท์","บัญญัติศัพท์","แปลศัพท์","ยืมเสียง"],"a":2,"e":"ถ่ายทอดความหมายเป็นคำไทยโดยไม่คงเสียงเดิม มีแนวโน้มเป็นการแปลศัพท์"},{"level":"ยาก","q":"ข้อใดแสดงวิธีคิดของ “นักสืบคำยืม” ได้ดีที่สุด?","choices":["เห็นเบาะแสเดียวแล้วตอบทันที","ใช้หลายเบาะแสและดูบริบทก่อนสรุป","เลือกคำที่คุ้นที่สุด","เลือกตัวเลือกที่ยาวที่สุด"],"a":1,"e":"การใช้หลายหลักฐานร่วมกับบริบทช่วยลดการเดาและทำให้การวิเคราะห์น่าเชื่อถือขึ้น"}]}];
-let player="",stage=0,q=0,score=0,lives=3,correct=0,answered=false;
-let unlocked=Number(localStorage.getItem("wdUnlockedV4")||0);
-let best=JSON.parse(localStorage.getItem("wdBestV4")||"{}");
-
-function show(id){
- document.querySelectorAll(".screen").forEach(x=>x.classList.remove("on"));
- document.getElementById(id).classList.add("on");
- scrollTo(0,0);
+const stages = [
+{
+ icon:"📜", title:"แฟ้ม 1 • คดีคู่แฝด", subtitle:"แยกเบาะแสบาลี–สันสกฤต",
+ missions:[
+ {story:"บนโต๊ะมีคำสองคำให้ตรวจต่อ: “อิทธิ” และ “ฤทธิ์”",ev:["อิ ↔ ฤ","เป็นคำที่เกี่ยวข้องกัน"],q:"ถ้าต้องเลือกคำที่เป็นเบาะแสฝั่งสันสกฤต ควรหยิบคำใดไปตรวจต่อ?",c:["อิทธิ","ฤทธิ์","ทั้งสองคำใช้แทนกันได้เสมอ","ยังไม่มีคำใดน่าสงสัย"],a:1,e:"เมื่อเปรียบเทียบรูป อิ/อุ กับ ฤ/ฤๅ ตามหลักที่ใช้ในบทเรียน “ฤทธิ์” เป็นเบาะแสฝั่งสันสกฤต"},
+ {story:"พบคำหนึ่งมีตัวอักษร “ฬ” และไม่มี “ฤ”",ev:["มี ฬ","ไม่มี ฤ"],q:"เบาะแสนี้ทำให้ควรเริ่มตรวจกลุ่มใดก่อน?",c:["บาลี","สันสกฤต","จีน","อังกฤษ"],a:0,e:"ฬ เป็นเบาะแสที่ใช้ชี้ไปทางบาลี และการไม่มี ฤ ก็ช่วยประกอบการสังเกต"},
+ {story:"แฟ้มใหม่มีคำที่ใช้ “ศ” หรือ “ษ” และมีพยัญชนะประสม",ev:["ศ/ษ","พยัญชนะประสม"],q:"คำลักษณะนี้ควรถูกส่งไปตรวจแฟ้มใดก่อน?",c:["บาลี","สันสกฤต","จีน","ชวา–มลายู"],a:1,e:"ศ/ษ และพยัญชนะประสมหรือควบกล้ำเป็นเบาะแสที่ใช้สังเกตคำสันสกฤต"},
+ {story:"คำหนึ่งมีเบาะแสทั้งจากรูปตัวอักษรและรูปคำหลายจุด",ev:["มีมากกว่า 1 เบาะแส","ไม่พึ่งคำเดียว"],q:"วิธีใดน่าเชื่อถือที่สุดในการปิดคดีนี้?",c:["ดูตัวอักษรจุดเดียว","ใช้หลายเบาะแสร่วมกัน","ดูจำนวนพยางค์อย่างเดียว","เดาจากความคุ้นหู"],a:1,e:"หลักฐานหลายจุดช่วยลดการเดา และเหมาะกับการวิเคราะห์คำมากกว่าการตัดสินจากลักษณะเดียว"}
+ ]
+},
+{
+ icon:"🏛️", title:"แฟ้ม 2 • คดีตราประทับ", subtitle:"แกะรอยคำเขมรจากรูปและบริบท",
+ missions:[
+ {story:"ในแฟ้มราชการพบคำหนึ่งขึ้นต้นด้วย “บรร-”",ev:["บรร-","บริบททางราชการ"],q:"นักสืบควรทำอย่างไร?",c:["สรุปทันทีว่าเป็นคำเขมร","ใช้เป็นเบาะแสแล้วดูหลักอื่นต่อ","ตัดทิ้งเพราะเป็นคำไทยแน่ ๆ","สรุปว่าเป็นคำอังกฤษ"],a:1,e:"บรร- เป็นเบาะแสของการแผลงคำบางรูป แต่ไม่ควรตัดสินจากจุดเดียว"},
+ {story:"พบคำที่มีการแผลงรูปจากพยัญชนะเดิม เช่น ข→กระ หรือ ผ→ประ",ev:["มีการแผลงรูป","ข→กระ / ผ→ประ"],q:"เบาะแสนี้ช่วยให้นักสืบคิดถึงกลุ่มใดมากขึ้น?",c:["เขมร","จีน","อังกฤษ","บาลี"],a:0,e:"การแผลงคำบางรูปเป็นหนึ่งในลักษณะที่ใช้สังเกตคำเขมร"},
+ {story:"คำหนึ่งถูกใช้ในบริบทที่เกี่ยวกับราชาศัพท์ และมีรูปคำที่เข้ากับเบาะแสที่กำลังสืบ",ev:["ราชาศัพท์","รูปคำสอดคล้อง"],q:"ข้อมูลใดควรใช้ประกอบการตัดสิน?",c:["บริบทอย่างเดียว","รูปคำอย่างเดียว","รูปคำและบริบท","จำนวนตัวอักษร"],a:2,e:"การใช้รูปคำร่วมกับบริบททำให้การสืบมีหลักฐานรอบด้านกว่า"},
+ {story:"มีคำสองคำให้เลือกตรวจต่อ แต่คำหนึ่งตรงกับเบาะแสเพียงจุดเดียว ส่วนอีกคำมีหลายเบาะแสสอดคล้องกัน",ev:["1 เบาะแส","หลายเบาะแส"],q:"ควรเลือกวิธีใดในการตัดสิน?",c:["เลือกคำที่ตรงจุดเดียว","เลือกคำที่มีหลายเบาะแสสอดคล้องกัน","เลือกคำที่ยาวกว่า","เลือกคำที่อ่านยากกว่า"],a:1,e:"นักสืบควรให้น้ำหนักกับหลักฐานหลายจุดมากกว่าความบังเอิญจากจุดเดียว"}
+ ]
+},
+{
+ icon:"🏮", title:"แฟ้ม 3 • คดีตลาด", subtitle:"ตามรอยคำจีนในชีวิตประจำวัน",
+ missions:[
+ {story:"เมนูร้านอาหารมีคำหนึ่งเป็นคำสั้น มีวรรณยุกต์ และใช้เรียกอาหาร",ev:["อาหาร","คำโดด","มีวรรณยุกต์"],q:"แฟ้มใดควรรับช่วงสืบต่อ?",c:["จีน","บาลี","สันสกฤต","เขมร"],a:0,e:"อาหาร + คำโดด + วรรณยุกต์ เป็นกลุ่มเบาะแสที่สอดคล้องกับคำจีนในภาษาไทย"},
+ {story:"พบคำหนึ่งใช้เรียกของใช้จากการค้าในชีวิตประจำวัน และรูปคำถูกปรับเสียงให้เข้ากับภาษาไทย",ev:["ของใช้","การค้า","ปรับเสียง"],q:"ข้อสรุปใดเหมาะกว่า?",c:["อาจเป็นคำยืมที่ปรับให้เข้ากับไทย","ต้องเป็นคำไทยแท้","ต้องเป็นคำบาลี","ไม่ใช่คำยืมแน่นอน"],a:0,e:"คำยืมจากจีนบางคำถูกปรับเสียงและรูปให้กลมกลืนกับภาษาไทย"},
+ {story:"นักสืบพบคำที่ดูคล้ายคำจีนจากเสียง แต่ไม่มีข้อมูลบริบทเลย",ev:["มีเพียงเสียง","ไม่มีบริบท"],q:"ควรทำอย่างไรต่อ?",c:["ตัดสินทันที","หาหลักฐานด้านบริบทเพิ่ม","เลือกคำที่ยาวที่สุด","สรุปว่าเป็นคำจีนทุกครั้ง"],a:1,e:"ลักษณะเสียงอย่างเดียวไม่พอ ควรหาบริบทและหลักฐานอื่นมาประกอบ"},
+ {story:"ในแฟ้มหนึ่งมีคำเกี่ยวกับอาหาร ของใช้ และการค้า",ev:["อาหาร","ของใช้","การค้า"],q:"ภาพรวมนี้ชี้ให้ตรวจภาษาใดก่อน?",c:["จีน","สันสกฤต","บาลี","อังกฤษ"],a:0,e:"คำจีนในภาษาไทยพบได้มากในเรื่องอาหาร ของใช้ และการค้า"}
+ ]
+},
+{
+ icon:"🌍", title:"แฟ้ม 4 • คดีของใหม่", subtitle:"ทับศัพท์ บัญญัติศัพท์ หรือแปลศัพท์",
+ missions:[
+ {story:"มีคำต่างประเทศถูกนำเสียงเดิมมาใช้ใกล้เคียงเดิมในภาษาไทย",ev:["เสียงใกล้เดิม","ไม่ได้แปลความหมาย"],q:"วิธีนำคำนี้มาใช้คืออะไร?",c:["ทับศัพท์","บัญญัติศัพท์","แปลศัพท์","แผลงคำ"],a:0,e:"การทับศัพท์เน้นถ่ายทอดเสียงและรูปของคำเดิมมาใช้ในภาษาไทย"},
+ {story:"มีแนวคิดใหม่จากต่างประเทศ แต่ผู้ใช้สร้างคำไทยขึ้นใหม่เพื่อเรียกแนวคิดนั้น",ev:["สร้างคำไทยใหม่","เน้นแนวคิด"],q:"วิธีนี้เรียกว่าอะไร?",c:["ทับศัพท์","บัญญัติศัพท์","แปลศัพท์","ยืมเสียง"],a:1,e:"บัญญัติศัพท์คือการสร้างคำไทยขึ้นใหม่จากแนวคิดหรือความหมายของคำเดิม"},
+ {story:"คำต่างประเทศถูกถ่ายทอดความหมายออกมาเป็นคำไทย โดยไม่รักษาเสียงเดิม",ev:["ความหมายตรง","เสียงไม่เหมือนเดิม"],q:"นักสืบควรติดป้ายวิธีใด?",c:["ทับศัพท์","บัญญัติศัพท์","แปลศัพท์","แผลงคำ"],a:2,e:"เมื่อถ่ายทอดความหมายเป็นคำไทยโดยไม่รักษาเสียงเดิม มีแนวโน้มเป็นการแปลศัพท์"},
+ {story:"เจอคำหนึ่งไม่คล้ายเสียงต้นฉบับ แต่ความหมายตรงกับคำต่างประเทศ",ev:["เสียงไม่คล้าย","ความหมายตรง"],q:"หลักฐานนี้ช่วยตัดตัวเลือกใดออกได้มากที่สุด?",c:["ทับศัพท์","แปลศัพท์","คำไทยแท้","ยังตัดอะไรไม่ได้เลย"],a:0,e:"ถ้าเสียงไม่คล้ายเดิม ก็ไม่สอดคล้องกับลักษณะของการทับศัพท์"}
+ ]
+},
+{
+ icon:"🌴", title:"แฟ้ม 5 • คดีเส้นทางใต้", subtitle:"ชวา–มลายู: อ่านคำพร้อมบริบท",
+ missions:[
+ {story:"พบคำในบทประพันธ์ คำนี้มีประมาณ 2–3 พยางค์และฟังต่างจากคำไทยทั่วไป",ev:["วรรณคดี","2–3 พยางค์"],q:"ควรเริ่มตรวจแฟ้มใด?",c:["ชวา–มลายู","อังกฤษ","จีน","บาลี"],a:0,e:"คำชวาที่ไทยยืมมาหลายคำพบในวรรณคดีและบทร้อยกรอง และมักมี 2–3 พยางค์"},
+ {story:"คำหนึ่งปรากฏในบริบทที่เกี่ยวกับการค้า ศาสนา และวัฒนธรรมของผู้คนในภูมิภาค",ev:["การค้า","ศาสนา","วัฒนธรรม"],q:"บริบทนี้ช่วยชี้ไปทางกลุ่มใด?",c:["ชวา–มลายู","สันสกฤต","อังกฤษ","จีน"],a:0,e:"การค้า ศาสนา และวัฒนธรรมเป็นช่องทางสำคัญของการรับคำมลายู"},
+ {story:"นักสืบพบคำยืมที่ถูกใช้ในภาษาไทยโดยความหมายแทบไม่เปลี่ยน",ev:["คำยืม","ความหมายคงเดิม"],q:"ข้อมูลนี้บอกอะไรได้ดีที่สุด?",c:["เป็นการใช้คำโดยคงความหมายเดิม","เป็นการแปลศัพท์","เป็นการบัญญัติศัพท์","เป็นการแผลงคำ"],a:0,e:"คำชวา–มลายูหลายคำถูกนำมาใช้โดยคงความหมายเดิมไว้"},
+ {story:"คำหนึ่งตรงกับเบาะแสเรื่องจำนวนพยางค์ แต่บริบทไม่สอดคล้อง",ev:["จำนวนพยางค์ตรง","บริบทไม่ตรง"],q:"นักสืบควรสรุปอย่างไร?",c:["ใช่แน่นอน","ยังไม่ควรสรุป ต้องหาหลักฐานเพิ่ม","ตัดสินจากจำนวนพยางค์ทันที","เลือกเพราะคำฟังแปลก"],a:1,e:"จำนวนพยางค์ช่วยเป็นเบาะแส แต่ควรใช้ร่วมกับบริบทและความหมาย"}
+ ]
+},
+{
+ icon:"🧭", title:"แฟ้ม 6 • คดีเส้นทางคำ", subtitle:"สืบว่าทำไมคำจึงเดินทางข้ามภาษา",
+ missions:[
+ {story:"เมืองสองแห่งเริ่มค้าขายกัน ผู้คนต้องเรียกสินค้าและสิ่งใหม่ ๆ ให้เข้าใจกัน",ev:["การค้าขาย","สินค้า"],q:"ผลด้านภาษาที่น่าจะเกิดขึ้นคืออะไร?",c:["มีโอกาสรับคำใหม่","ไม่มีคำใหม่เลย","ทุกคำกลายเป็นคำไทยแท้","ภาษาไม่เปลี่ยน"],a:0,e:"การค้าขายทำให้ผู้คนติดต่อกัน จึงเป็นช่องทางหนึ่งของการแลกเปลี่ยนคำ"},
+ {story:"ชุมชนหนึ่งรับศาสนาและวัฒนธรรมจากอีกกลุ่มหนึ่งพร้อมกับแนวคิดและสิ่งใหม่",ev:["ศาสนา","วัฒนธรรม"],q:"สิ่งใดมีโอกาสเกิดขึ้นกับภาษา?",c:["รับคำจากภาษาอื่น","คำใหม่หายไป","ทุกคำต้องเป็นคำไทยแท้","ไม่มีการเปลี่ยนแปลง"],a:0,e:"ศาสนาและวัฒนธรรมเป็นสาเหตุหนึ่งของการรับคำจากภาษาอื่น"},
+ {story:"นักเรียนใช้ตำราภาษาต่างประเทศเป็นประจำและพบคำเฉพาะทางเพิ่มขึ้น",ev:["การศึกษา","คำเฉพาะทาง"],q:"คำอธิบายใดสมเหตุสมผลที่สุด?",c:["อาจรับคำจากภาษาที่เรียนมากขึ้น","จะไม่มีคำใหม่","ทุกคำจะเป็นราชาศัพท์","คำต่างประเทศจะหายไป"],a:0,e:"การศึกษาเป็นอีกช่องทางหนึ่งที่ทำให้ภาษาไทยรับคำศัพท์จากภาษาอื่น"},
+ {story:"นักสืบพบคำต่างประเทศในภาษาไทย แต่ยังไม่รู้ว่ามาจากการค้า การศึกษา หรือวัฒนธรรม",ev:["พบคำต่างประเทศ","ยังไม่รู้ช่องทาง"],q:"คำถามใดควรถามต่อก่อน?",c:["คำนี้ยาวแค่ไหน","คำนี้เกี่ยวข้องกับบริบทใด","คำนี้อ่านยากหรือไม่","คำนี้คุ้นหูหรือไม่"],a:1,e:"การรู้บริบทช่วยอธิบายเส้นทางการยืมคำได้ดีกว่าดูรูปร่างคำอย่างเดียว"}
+ ]
+},
+{
+ icon:"🕵️", title:"แฟ้ม 7 • คดีปริศนาสุดท้าย", subtitle:"ใช้หลายหลักฐานเพื่อปิดคดี",
+ missions:[
+ {story:"คำหนึ่งมี ฬ และไม่มี ฤ ขณะที่อีกคำมี ศ และรูปควบกล้ำ",ev:["ฬ / ไม่มี ฤ","ศ / ควบกล้ำ"],q:"ถ้าต้องแยกแฟ้มสองคำ ควรจัดอย่างไร?",c:["คำแรก→บาลี / คำสอง→สันสกฤต","คำแรก→สันสกฤต / คำสอง→บาลี","ทั้งคู่→จีน","ทั้งคู่→อังกฤษ"],a:0,e:"เบาะแส ฬ ช่วยชี้ไปทางบาลี ส่วน ศ และพยัญชนะประสมช่วยชี้ไปทางสันสกฤต"},
+ {story:"คำหนึ่งเกี่ยวกับอาหาร เป็นคำโดด และมีวรรณยุกต์ อีกคำไม่คล้ายเสียงต่างประเทศแต่มีความหมายตรง",ev:["อาหาร+คำโดด+วรรณยุกต์","เสียงไม่คล้าย+ความหมายตรง"],q:"ควรจัดคดีอย่างไร?",c:["คำแรก→จีน / คำสอง→แปลศัพท์","คำแรก→บาลี / คำสอง→ทับศัพท์","คำแรก→อังกฤษ / คำสอง→จีน","คำแรก→เขมร / คำสอง→บัญญัติศัพท์"],a:0,e:"เบาะแสแรกสอดคล้องกับคำจีน ส่วนเบาะแสหลังสอดคล้องกับการแปลศัพท์"},
+ {story:"มีคำหนึ่งขึ้นต้นด้วย บรร- และอยู่ในบริบทที่เกี่ยวกับราชาศัพท์",ev:["บรร-","ราชาศัพท์"],q:"ข้อใดคือวิธีคิดแบบนักสืบที่ดีที่สุด?",c:["ฟันธงจาก บรร- ทันที","ใช้รูปคำและบริบทประกอบกัน","ดูจำนวนตัวอักษรอย่างเดียว","เลือกคำที่อ่านยาก"],a:1,e:"บรร- เป็นเพียงเบาะแสหนึ่ง จึงควรใช้ร่วมกับบริบทและหลักอื่น"},
+ {story:"แฟ้มสุดท้ายมีคำที่ตรงกับหลักหลายข้อ แต่มีหนึ่งเบาะแสที่ขัดกัน",ev:["หลักฐานหลายข้อ","มี 1 จุดขัดแย้ง"],q:"ควรทำอย่างไร?",c:["ฟันธงทันที","ทบทวนหลักฐานและหาข้อมูลเพิ่ม","ทิ้งทุกหลักฐาน","เลือกคำที่คุ้นที่สุด"],a:1,e:"เมื่อหลักฐานขัดกัน นักสืบควรตรวจสอบเพิ่ม ไม่ควรรีบสรุป"},
+ ]
 }
+];
+
+let player="",stage=0,q=0,score=0,lives=3,correct=0,streak=0;
+let unlocked=Number(localStorage.getItem("wdUnlockedV5")||0);
+let best=JSON.parse(localStorage.getItem("wdBestV5")||"{}");
+let totalxp=Number(localStorage.getItem("wdXPV5")||0);
+
+function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("on"));document.getElementById(id).classList.add("on");scrollTo(0,0)}
 function home(){show("home")}
 function start(){
  player=document.getElementById("name").value.trim()||"นักสืบ";
  document.getElementById("player").textContent=player;
- render();
- show("map");
+ renderMap();show("map");
 }
-function render(){
+function renderMap(){
+ document.getElementById("totalxp").textContent=totalxp;
+ document.getElementById("passed").textContent=Object.keys(best).filter(k=>(best[k]?.stars||0)>=2).length;
  const g=document.getElementById("mapgrid");g.innerHTML="";
  stages.forEach((s,i)=>{
-  const b=document.createElement("button");
-  b.className="stage "+(i<=unlocked?"open":"");
-  b.disabled=i>unlocked;
+  const b=document.createElement("button");b.className="stage "+(i<=unlocked?"open":"");b.disabled=i>unlocked;
   const n=best[i]?.stars||0;
-  b.innerHTML=`<span class="icon">${s.icon}</span>
-  <span class="lock">${i<=unlocked?"เปิด":"🔒"}</span>
+  b.innerHTML=`<span class="icon">${s.icon}</span><span class="lock">${i<=unlocked?"เปิด":"🔒"}</span>
   <h3>${s.title}</h3><small>${s.subtitle}</small>
-  <div class="stars">${"⭐".repeat(n)}${"☆".repeat(3-n)}</div>`;
-  b.onclick=()=>startStage(i);
-  g.appendChild(b);
+  <div class="stars">${"⭐".repeat(n)}${"☆".repeat(3-n)}</div>
+  <div class="choice-tag">${i<=unlocked?"แตะเพื่อรับภารกิจ":"ผ่านแฟ้มก่อนหน้าเพื่อปลดล็อก"}</div>`;
+  b.onclick=()=>startStage(i);g.appendChild(b);
  });
 }
-function showMap(){render();show("map")}
-function shuffle(arr){
- return arr.map(v=>({v,r:Math.random()})).sort((a,b)=>a.r-b.r).map(x=>x.v);
-}
-function startStage(i){
- stage=i;q=0;score=0;correct=0;lives=3;
- document.getElementById("score").textContent=0;
- document.getElementById("lives").textContent=3;
- show("quiz");load();
-}
+function showMap(){renderMap();show("map")}
+function shuffle(arr){return arr.map(v=>({v,r:Math.random()})).sort((a,b)=>a.r-b.r).map(x=>x.v)}
+function startStage(i){stage=i;q=0;score=0;correct=0;lives=3;streak=0;document.getElementById("score").textContent=0;document.getElementById("lives").textContent=3;show("quiz");load()}
 function load(){
- answered=false;
- const d=stages[stage].questions[q];
- document.getElementById("stageTitle").textContent=`${stages[stage].icon} ${stages[stage].title} • ภารกิจ ${q+1}/5`;
- document.getElementById("level").textContent="ระดับ "+d.level;
+ const d=stages[stage].missions[q];
+ document.getElementById("stageTitle").textContent=`${stages[stage].icon} ${stages[stage].title}`;
+ document.getElementById("mission").textContent=`ภารกิจ ${q+1}/${stages[stage].missions.length} • เก็บหลักฐานให้ครบก่อนปิดแฟ้ม`;
+ document.getElementById("bar").style.width=(q/stages[stage].missions.length*100)+"%";
+ document.getElementById("story").textContent=d.story;
+ document.getElementById("evidence").innerHTML=d.ev.map(x=>`<span class="ev">🔎 ${x}</span>`).join("");
  document.getElementById("question").textContent=d.q;
- document.getElementById("bar").style.width=(q/5*100)+"%";
- const answerObjs=d.choices.map((text,i)=>({text,correct:i===d.a}));
- const opts=shuffle(answerObjs);
- const box=document.getElementById("answers");box.innerHTML="";
- opts.forEach(o=>{
-  const b=document.createElement("button");
-  b.className="answer";b.textContent=o.text;b.dataset.correct=o.correct;
-  b.onclick=()=>answer(b,o.correct,d);
-  box.appendChild(b);
- });
- document.getElementById("feedback").textContent="";
+ const answerObjs=d.c.map((text,i)=>({text,correct:i===d.a}));
+ const opts=shuffle(answerObjs);const box=document.getElementById("answers");box.innerHTML="";
+ opts.forEach(o=>{const b=document.createElement("button");b.className="answer";b.textContent=o.text;b.dataset.correct=o.correct;b.onclick=()=>answer(b,o.correct,d);box.appendChild(b)});
+ document.getElementById("feedback").textContent="เลือกคำตอบจากหลักฐานที่มี ไม่ต้องรีบ";
  document.getElementById("next").style.display="none";
 }
 function answer(btn,isCorrect,d){
- if(answered)return;
- answered=true;
+ if(btn.disabled)return;
  document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
  if(isCorrect){
-  btn.classList.add("correct");score+=10;correct++;
-  document.getElementById("feedback").textContent="✅ ถูกต้อง! +10 คะแนน — "+d.e;
+  btn.classList.add("correct");streak++;correct++;
+  let gain=10+(streak>=2?5:0);score+=gain;totalxp+=gain;
+  document.getElementById("feedback").textContent=`✅ ปิดเบาะแสได้! +${gain} XP — ${d.e}`;
  }else{
-  btn.classList.add("wrong");lives--;
-  document.getElementById("lives").textContent=lives;
+  btn.classList.add("wrong");lives--;streak=0;document.getElementById("lives").textContent=lives;
   document.querySelectorAll(".answer").forEach(b=>{if(b.dataset.correct==="true")b.classList.add("correct")});
-  document.getElementById("feedback").textContent="❌ ยังไม่ใช่ — "+d.e;
+  document.getElementById("feedback").textContent=`❌ เบาะแสนี้ยังไม่พอ — ${d.e}`;
  }
  document.getElementById("score").textContent=score;
- if(lives>0)document.getElementById("next").style.display="inline-block";
- else setTimeout(()=>finish(false),700);
+ localStorage.setItem("wdXPV5",totalxp);
+ if(lives>0)document.getElementById("next").style.display="inline-block";else setTimeout(()=>finish(false),650);
 }
-function nextQ(){q++;if(q>=5)finish(true);else load()}
+function nextQ(){q++;if(q>=stages[stage].missions.length)finish(true);else load()}
 function finish(done){
- const pct=correct*20;
- const stars=pct===100?3:pct>=80?2:pct>=60?1:0;
- if(done&&pct>=80&&stage===unlocked&&unlocked<stages.length-1){
-  unlocked++;localStorage.setItem("wdUnlockedV4",unlocked);
- }
- if(stars>(best[stage]?.stars||0)){
-  best[stage]={stars};localStorage.setItem("wdBestV4",JSON.stringify(best));
- }
- document.getElementById("resicon").textContent=done&&pct>=80?"🏆":"💪";
- document.getElementById("restitle").textContent=done&&pct>=80?"แฟ้มคดีผ่าน!":"ลองสืบใหม่อีกครั้ง";
+ const total=stages[stage].missions.length,pct=Math.round(correct/total*100);
+ const stars=pct===100?3:pct>=75?2:pct>=50?1:0;
+ if(done&&pct>=75&&stage===unlocked&&unlocked<stages.length-1){unlocked++;localStorage.setItem("wdUnlockedV5",unlocked)}
+ if(stars>(best[stage]?.stars||0)){best[stage]={stars};localStorage.setItem("wdBestV5",JSON.stringify(best))}
+ document.getElementById("resicon").textContent=done&&pct>=75?"🏆":"🧠";
+ document.getElementById("restitle").textContent=done&&pct>=75?"ปิดแฟ้มสำเร็จ!":"คดียังไม่ปิด";
  document.getElementById("resstage").textContent=`${stages[stage].icon} ${stages[stage].title}`;
- document.getElementById("resscore").textContent=score+" คะแนน";
- document.getElementById("resdetail").textContent=`ตอบถูก ${correct}/5 ข้อ • ${pct}% • ${"⭐".repeat(stars)}${"☆".repeat(3-stars)}`;
- document.getElementById("tip").textContent=done&&pct>=80
- ?(stage<stages.length-1?"🎉 ปลดล็อกแฟ้มถัดไปแล้ว!":"👑 ผ่านครบทุกแฟ้มแล้ว")
- :"💡 ต้องได้อย่างน้อย 80% เพื่อผ่านแฟ้ม ลองใหม่ได้เลย";
- show("result");
+ document.getElementById("resscore").textContent=score+" XP";
+ document.getElementById("resdetail").textContent=`ตอบถูก ${correct}/${total} ภารกิจ • ${pct}% • ${"⭐".repeat(stars)}${"☆".repeat(3-stars)}`;
+ const badges=[];
+ if(pct===100)badges.push("🏅 นักสืบตาเหยี่ยว");
+ if(streak>=2)badges.push("🔥 นักสืบต่อเนื่อง");
+ if(stars>=2)badges.push("🗂️ ปลดล็อกแฟ้ม");
+ if(!badges.length)badges.push("🔎 นักสืบฝึกหัด");
+ document.getElementById("resbadges").innerHTML=badges.map(x=>`<span class="badge">${x}</span>`).join("");
+ document.getElementById("tip").textContent=done&&pct>=75?(stage<stages.length-1?"🎉 แฟ้มถัดไปถูกปลดล็อกแล้ว ลองไปสืบต่อได้เลย":"👑 ภารกิจสุดท้ายสำเร็จ! คุณใช้หลายหลักฐานปิดคดีได้"):"💡 ลองใหม่โดยอ่าน “แฟ้มหลักฐาน” ก่อน แล้วค่อยตัดตัวเลือก";
+ localStorage.setItem("wdXPV5",totalxp);show("result");
 }
 </script>
 </body>
