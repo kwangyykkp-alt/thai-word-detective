@@ -1,39 +1,117 @@
-<!doctype html><html lang="th"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>นักสืบคำยืม</title>
+<!doctype html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>นักสืบคำยืม • เวอร์ชัน 3</title>
 <style>
-*{box-sizing:border-box}body{margin:0;font-family:system-ui,sans-serif;background:linear-gradient(135deg,#f5f0ff,#eef8ff);color:#292535}.app{max-width:900px;margin:auto;padding:16px}.screen{display:none}.on{display:block}.card{background:#fff;border-radius:26px;padding:24px;box-shadow:0 12px 35px #40307818;margin-top:18px}.hero{text-align:center;padding:42px 20px}.logo{font-size:68px}.eyebrow,.pill{display:inline-block;padding:7px 13px;border-radius:99px;background:#eee7ff;color:#5837a6;font-weight:800}h1{font-size:clamp(32px,7vw,52px);color:#52349b;margin:10px 0}h2{margin:8px 0}.muted{color:#6e6978;line-height:1.6}input{width:100%;padding:14px;border:2px solid #e4e0ee;border-radius:15px;margin:18px 0;font-size:17px}button{font:inherit;border:0;border-radius:15px;padding:13px 18px;cursor:pointer;font-weight:800}.primary{background:#6545c5;color:#fff}.secondary{background:#eeeaf3;color:#3b3745}.head{display:flex;justify-content:space-between;gap:10px;align-items:center}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}.stage{text-align:left;background:#fff;border:2px solid #e9e5f0;min-height:145px;position:relative}.stage.open{border-color:#cbbcf0}.stage:disabled{opacity:.48}.stage .icon{font-size:34px}.lock{position:absolute;right:10px;top:10px}.stars{color:#dca52a;margin-top:7px}.stat{background:#f2eff7;border-radius:99px;padding:7px 10px}.stats{display:flex;gap:7px}.barbg{height:10px;background:#eeeaf4;border-radius:99px;margin:15px 0}.bar{height:100%;background:#7452d2;border-radius:99px;width:0}.word{text-align:center;font-size:clamp(38px,9vw,62px);font-weight:900;color:#52349b;margin:18px 0}.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px}.answer{background:#f5f3f8;color:#292535}.answer.correct{background:#dff6e7;border:2px solid #41ae72}.answer.wrong{background:#ffe3e3;border:2px solid #db5c5c}.feedback{min-height:42px;background:#f7f5fa;border-radius:13px;padding:11px;margin-top:13px;font-weight:750;text-align:center}.result{text-align:center}.bigscore{font-size:54px;font-weight:900;color:#52349b}.tip{background:#fff7d9;border-radius:14px;padding:12px;margin:15px 0;text-align:left}@media(max-width:620px){.grid,.answers{grid-template-columns:1fr}.card{padding:18px}}
-</style></head><body><div class="app">
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Thai",sans-serif;background:linear-gradient(135deg,#f4efff,#eef8ff);color:#292535}
+.app{max-width:900px;margin:auto;padding:14px}.screen{display:none}.on{display:block}
+.card{background:#fff;border-radius:26px;padding:22px;box-shadow:0 12px 35px rgba(64,48,120,.10);margin-top:14px}
+.hero{text-align:center;padding:40px 20px}.logo{font-size:64px}.eyebrow,.pill{display:inline-block;padding:7px 13px;border-radius:99px;background:#eee7ff;color:#5837a6;font-weight:800}
+h1{font-size:clamp(32px,7vw,52px);color:#52349b;margin:10px 0}h2{margin:8px 0}.muted{color:#6e6978;line-height:1.65}
+input{width:100%;padding:14px;border:2px solid #e4e0ee;border-radius:15px;margin:18px 0;font-size:17px}
+button{font:inherit;border:0;border-radius:15px;padding:13px 17px;cursor:pointer;font-weight:800}.primary{background:#6545c5;color:#fff}.secondary{background:#eeeaf3;color:#3b3745}
+.head{display:flex;justify-content:space-between;gap:10px;align-items:center}.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:13px}
+.stage{width:100%;text-align:left;background:#fff;border:2px solid #e9e5f0;min-height:150px;position:relative}.stage.open{border-color:#cbbcf0}.stage:disabled{opacity:.45}.stage .icon{font-size:34px}.lock{position:absolute;right:10px;top:10px}
+.stars{color:#dca52a;margin-top:7px}.stats{display:flex;gap:7px}.stat{background:#f2eff7;border-radius:99px;padding:7px 10px}
+.barbg{height:10px;background:#eeeaf4;border-radius:99px;margin:15px 0}.bar{height:100%;background:#7452d2;border-radius:99px;width:0;transition:.25s}
+.case{font-weight:850;color:#6545c5}.word{font-size:clamp(30px,7vw,48px);font-weight:900;color:#52349b;margin:18px 0;text-align:center}
+.question{text-align:center;font-size:clamp(20px,4.5vw,28px);font-weight:850;line-height:1.45}.answers{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.answer{background:#f5f3f8;color:#292535;min-height:64px;border:2px solid transparent}.answer:hover{border-color:#cbbcf0}.answer.correct{background:#dff6e7;border-color:#41ae72}.answer.wrong{background:#ffe3e3;border-color:#db5c5c}
+.feedback{min-height:48px;background:#f7f5fa;border-radius:13px;padding:11px;margin-top:13px;font-weight:750;text-align:left;line-height:1.5}
+.result{text-align:center}.bigscore{font-size:54px;font-weight:900;color:#52349b}.tip{background:#fff7d9;border-radius:14px;padding:12px;margin:15px 0;text-align:left}
+.note{font-size:13px;color:#777;line-height:1.5;margin-top:16px}.tag{font-size:12px;background:#f0edf7;border-radius:99px;padding:5px 9px;color:#625a72}
+@media(max-width:620px){.grid,.answers{grid-template-columns:1fr}.card{padding:18px}.hero{padding:30px 15px}}
+</style>
+</head>
+<body><div class="app">
 
-<section id="home" class="screen on"><div class="card hero"><div class="logo">🔎</div><span class="eyebrow">เกมการเรียนรู้ภาษาไทย</span><h1>นักสืบคำยืม</h1><p class="muted">ภารกิจตามหาต้นตอคำ<br>จากภาษาต่างประเทศ 7 กลุ่ม</p><input id="name" maxlength="30" placeholder="พิมพ์ชื่อผู้เล่น"><button class="primary" onclick="start()">เริ่มภารกิจ 🎮</button></div></section>
+<section id="home" class="screen on">
+<div class="card hero">
+<div class="logo">🔎</div><span class="eyebrow">เกมการเรียนรู้ภาษาไทย • เวอร์ชัน 3</span>
+<h1>นักสืบคำยืม</h1>
+<p class="muted">คำจากภาษาต่างประเทศไม่ได้บอกคำตอบให้เราง่าย ๆ<br>จงใช้ “หลักฐาน” จากบทเรียนเพื่อสืบให้ถูกต้อง</p>
+<input id="name" maxlength="30" placeholder="พิมพ์ชื่อผู้เล่น">
+<button class="primary" onclick="start()">เริ่มภารกิจ 🎮</button>
+<p class="note">ตัวเลือกจะถูกสลับตำแหน่งทุกข้อ เพื่อไม่ให้เดาจากตำแหน่งคำตอบ</p>
+</div></section>
 
-<section id="map" class="screen"><div class="card"><div class="head"><div><small>นักสืบ</small><br><span id="player" class="pill"></span></div><button class="secondary" onclick="home()">ออก</button></div><h2>🗺️ แผนที่ภารกิจ</h2><p class="muted">ผ่านด่านด้วยคะแนนอย่างน้อย 75% เพื่อปลดล็อกด่านถัดไป</p><div id="mapgrid" class="grid"></div></div></section>
+<section id="map" class="screen">
+<div class="card">
+<div class="head"><div><small>นักสืบ</small><br><span id="player" class="pill"></span></div><button class="secondary" onclick="home()">ออก</button></div>
+<h2>🗺️ แผนที่แฟ้มคดี</h2><p class="muted">แต่ละแฟ้มมี 5 ภารกิจ ต้องได้อย่างน้อย 75% จึงปลดล็อกแฟ้มถัดไป</p>
+<div id="mapgrid" class="grid"></div>
+<p class="note">* แฟ้มลับโบนัสภาษาเกาหลีเป็นความรู้เพิ่มเติมนอกไฟล์บทเรียนที่ส่งมา</p>
+</div></section>
 
-<section id="quiz" class="screen"><div class="card"><div class="head"><button class="secondary" onclick="showMap()">← แผนที่</button><div class="stats"><span class="stat">⭐ <b id="score">0</b></span><span class="stat">❤️ <b id="lives">3</b></span></div></div><div class="barbg"><div id="bar" class="bar"></div></div><small id="stageTitle"></small><div class="word" id="word"></div><h2 style="text-align:center">คำนี้มาจากภาษาใด?</h2><div id="answers" class="answers"></div><div id="feedback" class="feedback"></div><div style="text-align:center"><button id="next" class="primary" style="display:none;margin-top:12px" onclick="nextQ()">ไปต่อ ➜</button></div></div></section>
+<section id="quiz" class="screen">
+<div class="card">
+<div class="head"><button class="secondary" onclick="showMap()">← แผนที่</button><div class="stats"><span class="stat">⭐ <b id="score">0</b></span><span class="stat">❤️ <b id="lives">3</b></span></div></div>
+<div class="barbg"><div id="bar" class="bar"></div></div>
+<div class="case" id="stageTitle"></div>
+<div class="question" id="question"></div>
+<div id="answers" class="answers"></div>
+<div id="feedback" class="feedback"></div>
+<div style="text-align:center"><button id="next" class="primary" style="display:none;margin-top:12px" onclick="nextQ()">ไปต่อ ➜</button></div>
+</div></section>
 
-<section id="result" class="screen"><div class="card result"><div id="resicon" class="logo">🏆</div><h1 id="restitle"></h1><p id="resstage" class="muted"></p><div id="resscore" class="bigscore"></div><p id="resdetail"></p><div id="tip" class="tip"></div><button class="primary" onclick="showMap()">กลับแผนที่ 🗺️</button></div></section>
+<section id="result" class="screen">
+<div class="card result"><div id="resicon" class="logo">🏆</div><h1 id="restitle"></h1>
+<p id="resstage" class="muted"></p><div id="resscore" class="bigscore"></div><p id="resdetail"></p>
+<div id="tip" class="tip"></div><button class="primary" onclick="showMap()">กลับแผนที่ 🗺️</button></div>
+</section>
 </div>
 
 <script>
-const stages=[
-["📜","บาลี–สันสกฤต","รากศัพท์คลาสสิก",[["ปัญญา",["บาลี–สันสกฤต","จีน","อังกฤษ","ญี่ปุ่น"]],["กษัตริย์",["เขมร","บาลี–สันสกฤต","เกาหลี","ชวา–มลายู"]],["ศีล",["อังกฤษ","จีน","บาลี–สันสกฤต","เขมร"]],["ภาษา",["ญี่ปุ่น","ชวา–มลายู","บาลี–สันสกฤต","เกาหลี"]]]],
-["🏛️","เขมร","ร่องรอยคำในราชสำนัก",[["เสด็จ",["จีน","เขมร","อังกฤษ","ญี่ปุ่น"]],["บรรทม",["เกาหลี","บาลี–สันสกฤต","เขมร","จีน"]],["โปรด",["ชวา–มลายู","เขมร","อังกฤษ","ญี่ปุ่น"]],["กำเนิด",["เขมร","จีน","เกาหลี","อังกฤษ"]]]],
-["🐉","จีน","ตามรอยคำจากแดนมังกร",[["ก๋วยเตี๋ยว",["จีน","อังกฤษ","ญี่ปุ่น","เขมร"]],["เต้าหู้",["เกาหลี","จีน","ชวา–มลายู","อังกฤษ"]],["บะหมี่",["จีน","ญี่ปุ่น","เขมร","อังกฤษ"]],["เกี๊ยว",["อังกฤษ","จีน","เกาหลี","บาลี–สันสกฤต"]]]],
-["⚽","อังกฤษ","คำสมัยใหม่รอบตัว",[["ฟุตบอล",["ชวา–มลายู","อังกฤษ","จีน","เกาหลี"]],["คอมพิวเตอร์",["อังกฤษ","จีน","เขมร","ญี่ปุ่น"]],["อินเทอร์เน็ต",["ญี่ปุ่น","อังกฤษ","จีน","เขมร"]],["แท็กซี่",["อังกฤษ","เกาหลี","จีน","ชวา–มลายู"]]]],
-["🎌","ญี่ปุ่น","แดนอาทิตย์อุทัย",[["ซูชิ",["จีน","ญี่ปุ่น","เกาหลี","อังกฤษ"]],["กิโมโน",["ญี่ปุ่น","เขมร","จีน","ชวา–มลายู"]],["คาราโอเกะ",["เกาหลี","อังกฤษ","ญี่ปุ่น","จีน"]],["ซามูไร",["จีน","ญี่ปุ่น","เกาหลี","ชวา–มลายู"]]]],
-["🇰🇷","เกาหลี","คำจากวัฒนธรรมร่วมสมัย",[["กิมจิ",["เกาหลี","ญี่ปุ่น","จีน","อังกฤษ"]],["ฮันบก",["จีน","เกาหลี","ญี่ปุ่น","อังกฤษ"]],["แทกวันโด",["อังกฤษ","ชวา–มลายู","เกาหลี","จีน"]],["โอปป้า",["ญี่ปุ่น","เกาหลี","จีน","เขมร"]]]],
-["🌴","ชวา–มลายู","ร่องรอยจากโลกมลายู",[["กริช",["ญี่ปุ่น","จีน","ชวา–มลายู","อังกฤษ"]],["บุหงา",["ชวา–มลายู","เขมร","เกาหลี","บาลี–สันสกฤต"]],["ทุเรียน",["จีน","อังกฤษ","ชวา–มลายู","ญี่ปุ่น"]],["มังคุด",["เกาหลี","ชวา–มลายู","เขมร","อังกฤษ"]]]]
-];
+const stages = [{"icon": "🗂️", "title": "แฟ้มคดีที่ 1", "subtitle": "เริ่มแกะรอยจากหลักฐานคำ", "questions": [{"q": "ถ้าพบคำว่า “กีฬา” นักสืบควรใช้หลักใดช่วยวิเคราะห์ก่อน?", "choices": ["ตรวจดูว่ามี ฬ", "ตรวจดูว่ามี ศ หรือ ษ", "ตรวจดูว่ามี ฤ", "ตรวจดูว่ามีคำทับศัพท์"], "a": 0, "e": "เอกสารระบุว่าสันสกฤตไม่นิยมใช้ ฬ จึงใช้ ฬ เป็นหลักช่วยสังเกตคำบาลี เช่น กีฬา"}, {"q": "จากตัวเลือกต่อไปนี้ คำใดมาจากภาษาเขมรตามบทเรียน?", "choices": ["กระดาน", "เต้าหู้", "กุหลาบ", "เกม"], "a": 0, "e": "เอกสารยก กระดาน กระท่อม กะทิ บัง โปรด ผกา เป็นตัวอย่างคำเขมร"}, {"q": "ข้อใดเป็นคำทับศัพท์จากภาษาอังกฤษตามบทเรียน?", "choices": ["สนามบิน", "โลกาภิวัตน์", "กราฟ", "วิทยาศาสตร์"], "a": 2, "e": "กราฟเป็นตัวอย่างคำทับศัพท์ ส่วนสนามบิน โลกาภิวัตน์ และวิทยาศาสตร์เป็นคำบัญญัติศัพท์"}, {"q": "ข้อใดอยู่ในกลุ่มคำจีนตามตัวอย่างในบทเรียน?", "choices": ["กระท่อม", "เต้าหู้", "กะพง", "กุหลาบ"], "a": 1, "e": "เต้าหู้เป็นหนึ่งในตัวอย่างคำที่ไทยยืมจากภาษาจีน"}, {"q": "คำใดมาจากภาษาญี่ปุ่นตามเอกสาร?", "choices": ["โสร่ง", "คาราเต้", "กะละแม", "กุหลาบ"], "a": 1, "e": "คาราเต้เป็นตัวอย่างคำจากภาษาญี่ปุ่นในเอกสาร"}]}, {"icon": "🔐", "title": "แฟ้มคดีที่ 2", "subtitle": "รหัสที่ซ่อนอยู่ในรูปคำ", "questions": [{"q": "ข้อใดมีลักษณะสอดคล้องกับคำสันสกฤตตามหลักในบทเรียน?", "choices": ["กีฬา", "จุฬา", "ศึกษา", "นาฬิกา"], "a": 2, "e": "คำที่มี ศ หรือ ษ เป็นลักษณะหนึ่งที่เอกสารใช้สังเกตคำสันสกฤต เช่น ศึกษา ศิลปะ ศีรษะ"}, {"q": "ข้อใดเป็นกลุ่มคำเขมรทั้งหมด?", "choices": ["กระดาน – กระท่อม – กะทิ", "เต้าหู้ – บะหมี่ – พะโล้", "เกม – กราฟ – คลินิก", "กุหลาบ – คาราวาน – ฝรั่ง"], "a": 0, "e": "ทั้งสามคำในตัวเลือกแรกอยู่ในชุดตัวอย่างคำเขมรของเอกสาร"}, {"q": "ถ้าพบคำว่า “เกาเหลา” ควรสืบไปที่ภาษาใด?", "choices": ["ชวา–มลายู", "จีน", "เขมร", "เปอร์เซีย"], "a": 1, "e": "เกาเหลาเป็นตัวอย่างคำจีนที่เอกสารระบุไว้โดยตรง"}, {"q": "ข้อใดเป็นคำบัญญัติศัพท์จากภาษาอังกฤษ?", "choices": ["เกม", "กราฟ", "สนามบิน", "คลินิก"], "a": 2, "e": "สนามบินเป็นคำบัญญัติศัพท์ของ AIRPORT ตามเอกสาร"}, {"q": "ข้อใดเป็นคำจากภาษาชวา–มลายูตามตัวอย่างในเอกสาร?", "choices": ["ทุเรียน", "เต้าหู้", "คาราเต้", "กุหลาบ"], "a": 0, "e": "ทุเรียนอยู่ในชุดตัวอย่างคำชวา–มลายูของเอกสาร"}]}, {"icon": "🧩", "title": "แฟ้มคดีที่ 3", "subtitle": "เทียบหลักฐานที่ดูคล้ายกัน", "questions": [{"q": "คู่ใดช่วยแสดงความแตกต่างระหว่างบาลีและสันสกฤตตามหลักในบทเรียน?", "choices": ["อิทธิ – ฤทธิ์", "กีฬา – กุหลาบ", "เต้าหู้ – บะหมี่", "เกม – กราฟ"], "a": 0, "e": "เอกสารใช้ความสัมพันธ์ของ อิ ในบาลี กับ ฤ ในสันสกฤต เป็นหนึ่งในหลักเปรียบเทียบ"}, {"q": "คำใดเป็นคำเขมรที่เอกสารยกเป็นคำราชาศัพท์?", "choices": ["เสวย", "กุหลาบ", "เต้าหู้", "โควตา"], "a": 0, "e": "เอกสารยก เขนาย ตรัส ทูล บรรทม เสวย เป็นตัวอย่างคำเขมรที่ใช้เป็นราชาศัพท์"}, {"q": "ข้อใดเป็นคำจีนที่เกี่ยวกับเครื่องใช้ตามตัวอย่างในบทเรียน?", "choices": ["ตะหลิว", "กระดาน", "กะพง", "กิโมโน"], "a": 0, "e": "ตะหลิวเป็นตัวอย่างคำจีนที่เกี่ยวกับเครื่องใช้"}, {"q": "“BLACKBOARD → กระดานดำ” เป็นวิธีใด?", "choices": ["ทับศัพท์", "บัญญัติศัพท์", "แปลศัพท์", "แผลงคำ"], "a": 2, "e": "เอกสารอธิบายว่าการแปลศัพท์คือการสร้างคำไทยที่มีความหมายตรงกับคำภาษาอังกฤษ และยก BLACKBOARD → กระดานดำ"}, {"q": "คำใดอยู่ในกลุ่มภาษาเปอร์เซียตามเอกสาร?", "choices": ["บูดู", "กุหลาบ", "กะปิ", "คาราเต้"], "a": 1, "e": "กุหลาบอยู่ในชุดตัวอย่างคำภาษาเปอร์เซีย"}]}, {"icon": "🕵️", "title": "แฟ้มคดีที่ 4", "subtitle": "คัดแยกคำจากหลายแหล่ง", "questions": [{"q": "ข้อใดเป็นลักษณะที่ใช้สังเกตคำบาลีตามบทเรียน?", "choices": ["นิยมใช้ ฬ", "นิยมใช้ ศ ษ", "มีสระ ฤ", "เป็นคำสองพยางค์เสมอ"], "a": 0, "e": "เอกสารระบุว่าสันสกฤตไม่นิยมใช้ ฬ จึงใช้คำที่มี ฬ เป็นหลักช่วยสังเกตคำบาลี"}, {"q": "ข้อใดเป็นคำเขมรจากตัวอย่างที่ใช้เป็นคำสามัญทั่วไป?", "choices": ["ฉงน", "เต้าหู้", "กราฟ", "กุหลาบ"], "a": 0, "e": "ฉงนอยู่ในตัวอย่างคำเขมรที่ใช้เป็นคำสามัญทั่วไป"}, {"q": "ข้อใดเป็นกลุ่มคำจีนทั้งหมด?", "choices": ["ก๋วยเตี๋ยว – เต้าหู้ – พะโล้", "กระดาน – โปรด – เสวย", "เกม – กราฟ – เทคโนโลยี", "กุหลาบ – คาราวาน – ฝรั่ง"], "a": 0, "e": "ก๋วยเตี๋ยว เต้าหู้ และพะโล้ อยู่ในชุดตัวอย่างคำจีน"}, {"q": "ข้อใดเป็นกลุ่มคำทับศัพท์ภาษาอังกฤษทั้งหมด?", "choices": ["เกม – กราฟ – การ์ตูน", "สนามบิน – โทรศัพท์ – วิทยาศาสตร์", "โลกาภิวัตน์ – สนามบิน – วิทยาศาสตร์", "กระดาน – กะทิ – โปรด"], "a": 0, "e": "เกม กราฟ การ์ตูน เป็นตัวอย่างคำทับศัพท์ภาษาอังกฤษในเอกสาร"}, {"q": "คำใดมาจากภาษาเปอร์เซียตามตัวอย่างในเอกสาร?", "choices": ["ตราชู", "โสร่ง", "กุหลาบ", "กะละแม"], "a": 2, "e": "ตราชูอยู่ในชุดคำเปอร์เซียเช่นกัน แต่ในข้อนี้ตัวเลือกที่ตรงกับโจทย์คือ กุหลาบ"}]}, {"icon": "📜", "title": "แฟ้มคดีที่ 5", "subtitle": "หลักฐานจากการใช้คำจริง", "questions": [{"q": "คำใดมีลักษณะที่บทเรียนใช้ชี้ว่าเป็นสันสกฤต?", "choices": ["กีฬา", "ศีรษะ", "นาฬิกา", "จุฬา"], "a": 1, "e": "ศีรษะมี ศ ษ ซึ่งเป็นลักษณะที่เอกสารใช้สังเกตคำสันสกฤต"}, {"q": "ถ้าพบคำว่า “เสด็จ” ควรพิจารณาอย่างไรตามบทเรียน?", "choices": ["เป็นคำเขมรที่ใช้เป็นราชาศัพท์", "เป็นคำจีนเกี่ยวกับอาหาร", "เป็นคำอังกฤษทับศัพท์", "เป็นคำชวาที่ใช้ในวรรณคดี"], "a": 0, "e": "เอกสารจัดกลุ่มคำราชาศัพท์ เช่น บรรทม เสวย และตัวอย่างคำเขมรในกลุ่มเดียวกัน"}, {"q": "คำใดเป็นคำจีนตามตัวอย่างในบทเรียน?", "choices": ["ตะหลิว", "กะไหล่", "กุหลาบ", "คาราเต้"], "a": 0, "e": "ตะหลิวเป็นตัวอย่างคำจีนที่เกี่ยวกับเครื่องใช้"}, {"q": "“AIRPORT → สนามบิน” จัดเป็นวิธีใด?", "choices": ["ทับศัพท์", "บัญญัติศัพท์", "แปลศัพท์", "ยืมคำโดยตรง"], "a": 1, "e": "เอกสารจัด สนามบิน เป็นคำบัญญัติศัพท์ของ AIRPORT"}, {"q": "ข้อใดเป็นคำชวา–มลายูจากตัวอย่างในเอกสาร?", "choices": ["ปาเต๊ะ", "เต้าหู้", "กุหลาบ", "กราฟ"], "a": 0, "e": "ปาเต๊ะอยู่ในรายการคำชวา–มลายูของเอกสาร"}]}, {"icon": "⚖️", "title": "แฟ้มคดีที่ 6", "subtitle": "ดวลหลักฐานที่ใกล้เคียงกัน", "questions": [{"q": "ข้อใดเป็นกลุ่มคำสันสกฤตที่มี ศ หรือ ษ ตามหลักในบทเรียน?", "choices": ["ศึกษา – ศิลปะ – ศีรษะ", "กีฬา – จุฬา – นาฬิกา", "เต้าหู้ – พะโล้ – บะหมี่", "เกม – กราฟ – คลินิก"], "a": 0, "e": "เอกสารยก ศึกษา ศิลปะ ศีรษะ เป็นตัวอย่างคำที่มี ศ หรือ ษ ในกลุ่มสันสกฤต"}, {"q": "ข้อใดเป็นกลุ่มคำเขมรทั้งหมด?", "choices": ["บรรทม – เสวย – โปรด", "เต้าหู้ – พะโล้ – เกาเหลา", "กุหลาบ – คาราวาน – ฝรั่ง", "เกม – กราฟ – โควตา"], "a": 0, "e": "บรรทม เสวย และโปรดอยู่ในชุดคำเขมร/ราชาศัพท์ตามเอกสาร"}, {"q": "คำใดเป็นตัวอย่างคำจีนที่เกี่ยวกับอาหาร?", "choices": ["ก๋วยเตี๋ยว", "กระดาน", "ทุเรียน", "กุหลาบ"], "a": 0, "e": "ก๋วยเตี๋ยวเป็นตัวอย่างคำจีนในหมวดอาหาร"}, {"q": "คำใดเป็นคำบัญญัติศัพท์ตามบทเรียน?", "choices": ["โทรศัพท์", "เกม", "คลินิก", "กราฟ"], "a": 0, "e": "โทรศัพท์เป็นคำบัญญัติศัพท์ของ TELEPHONE ในเอกสาร"}, {"q": "คำใดเป็นคำญี่ปุ่นจากเอกสาร?", "choices": ["กิโมโน", "กะละแม", "กุหลาบ", "บูดู"], "a": 0, "e": "กิโมโนอยู่ในรายการตัวอย่างคำภาษาญี่ปุ่น"}]}, {"icon": "🚪", "title": "แฟ้มคดีที่ 7", "subtitle": "ห้องเก็บหลักฐานคำยืม", "questions": [{"q": "ถ้าคำหนึ่งมี “ฬ” ควรตั้งข้อสังเกตใดก่อน ตามหลักในเอกสาร?", "choices": ["สงสัยว่าเป็นบาลี", "สงสัยว่าเป็นสันสกฤต", "สงสัยว่าเป็นจีน", "สงสัยว่าเป็นอังกฤษ"], "a": 0, "e": "เอกสารระบุว่าสันสกฤตไม่นิยมใช้ ฬ จึงใช้ลักษณะนี้ช่วยสังเกตคำบาลี"}, {"q": "ข้อใด “ไม่เข้าพวก” ด้านที่มาของภาษา?", "choices": ["กระดาน", "กระท่อม", "กะทิ", "เต้าหู้"], "a": 3, "e": "สามคำแรกเป็นตัวอย่างคำเขมร ส่วนเต้าหู้เป็นคำจีน"}, {"q": "คำใดมาจากภาษาเปอร์เซียตามเอกสาร?", "choices": ["คาราวาน", "บูดู", "กะปิ", "คาราเต้"], "a": 0, "e": "คาราวานอยู่ในรายการคำภาษาเปอร์เซีย"}, {"q": "คำใดมาจากภาษาโปรตุเกสตามเอกสาร?", "choices": ["กะละแม", "กุหลาบ", "กงสุล", "อะไหล่"], "a": 0, "e": "กะละแมอยู่ในรายการคำภาษาโปรตุเกส"}, {"q": "คำใดมาจากภาษาฝรั่งเศสตามเอกสาร?", "choices": ["กงสุล", "กะละแม", "กุหลาบ", "กะพง"], "a": 0, "e": "กงสุลอยู่ในรายการคำภาษาฝรั่งเศส"}]}, {"icon": "🇰🇷", "title": "แฟ้มลับโบนัส", "subtitle": "ภารกิจพิเศษ: ภาษาเกาหลี", "bonus": true, "questions": [{"q": "คำใดเป็นคำจากภาษาเกาหลี?", "choices": ["กิมจิ", "กิโมโน", "คาราเต้", "กุหลาบ"], "a": 0, "e": "ภารกิจพิเศษนี้ใช้ความรู้เพิ่มเติมนอกเอกสารที่ส่งมา: กิมจิเป็นคำจากภาษาเกาหลี"}, {"q": "ข้อใดเป็นกลุ่มคำเกาหลี?", "choices": ["กิมจิ – ฮันบก – แทกวันโด", "กิโมโน – คาราเต้ – ซามูไร", "เต้าหู้ – บะหมี่ – เกาเหลา", "เกม – กราฟ – คลินิก"], "a": 0, "e": "ภารกิจพิเศษนี้ใช้ความรู้เพิ่มเติม: กิมจิ ฮันบก และแทกวันโดเป็นคำที่เกี่ยวข้องกับภาษาเกาหลี"}, {"q": "คำใดไม่ใช่คำเกาหลี?", "choices": ["ฮันบก", "กิมจิ", "กิโมโน", "แทกวันโด"], "a": 2, "e": "กิโมโนเป็นคำจากภาษาญี่ปุ่น ส่วนอีกสามคำเป็นคำที่เกี่ยวข้องกับภาษาเกาหลี"}, {"q": "คำว่า “กิโมโน” ควรจับคู่กับภาษาใด?", "choices": ["เกาหลี", "ญี่ปุ่น", "จีน", "ชวา–มลายู"], "a": 1, "e": "กิโมโนเป็นคำจากภาษาญี่ปุ่นตามเอกสาร"}, {"q": "ถ้าเจอ “กิมจิ” กับ “กิโมโน” ควรแยกอย่างไร?", "choices": ["ทั้งสองเป็นเกาหลี", "ทั้งสองเป็นญี่ปุ่น", "กิมจิเป็นเกาหลี กิโมโนเป็นญี่ปุ่น", "กิมจิเป็นญี่ปุ่น กิโมโนเป็นเกาหลี"], "a": 2, "e": "ข้อนี้เป็นการเปรียบเทียบความรู้เพิ่มเติมเรื่องเกาหลีกับข้อมูลภาษาญี่ปุ่นในเอกสาร"}]}];
 let player="",stage=0,q=0,score=0,lives=3,correct=0,answered=false;
-let unlocked=+localStorage.getItem("wdUnlocked")||0,best=JSON.parse(localStorage.getItem("wdBest")||"{}");
+let unlocked=Number(localStorage.getItem("wdUnlockedV3")||0);
+let best=JSON.parse(localStorage.getItem("wdBestV3")||"{}");
+
 function show(id){document.querySelectorAll(".screen").forEach(x=>x.classList.remove("on"));document.getElementById(id).classList.add("on");scrollTo(0,0)}
-function start(){player=document.getElementById("name").value.trim()||"นักสืบ";document.getElementById("player").textContent=player;render();show("map")}
 function home(){show("home")}
-function render(){let g=document.getElementById("mapgrid");g.innerHTML="";stages.forEach((s,i)=>{let b=document.createElement("button");b.className="stage "+(i<=unlocked?"open":"");b.disabled=i>unlocked;let n=best[i]?.stars||0;b.innerHTML=`<span class="icon">${s[0]}</span><span class="lock">${i<=unlocked?"เปิด":"🔒"}</span><h3>ด่าน ${i+1} • ${s[1]}</h3><small>${s[2]}</small><div class="stars">${"⭐".repeat(n)}${"☆".repeat(3-n)}</div>`;b.onclick=()=>startStage(i);g.appendChild(b)})}
+function start(){player=document.getElementById("name").value.trim()||"นักสืบ";document.getElementById("player").textContent=player;render();show("map")}
+function render(){
+ const g=document.getElementById("mapgrid");g.innerHTML="";
+ stages.forEach((s,i)=>{
+  const b=document.createElement("button");b.className="stage "+(i<=unlocked?"open":"");b.disabled=i>unlocked;
+  const n=best[i]?.stars||0;
+  b.innerHTML=`<span class="icon">${s.icon}</span><span class="lock">${i<=unlocked?"เปิด":"🔒"}</span>
+  <h3>${s.title}${s.bonus?" ✨":""}</h3><small>${s.subtitle}</small>
+  <div class="stars">${"⭐".repeat(n)}${"☆".repeat(3-n)}</div>`;
+  b.onclick=()=>startStage(i);g.appendChild(b);
+ });
+}
 function showMap(){render();show("map")}
-function startStage(i){stage=i;q=0;score=0;correct=0;lives=3;document.getElementById("stageTitle").textContent=`ด่าน ${i+1} • ${stages[i][0]} ${stages[i][1]}`;document.getElementById("lives").textContent=3;document.getElementById("score").textContent=0;show("quiz");load()}
-function load(){answered=false;let data=stages[stage][3][q],word=data[0],opts=data[1],ans=stages[stage][1];document.getElementById("word").textContent="“"+word+"”";document.getElementById("bar").style.width=(q/4*100)+"%";document.getElementById("answers").innerHTML="";document.getElementById("feedback").textContent="";document.getElementById("next").style.display="none";opts.forEach(x=>{let b=document.createElement("button");b.className="answer";b.textContent=x;b.onclick=()=>answer(b,x,ans);document.getElementById("answers").appendChild(b)})}
-function answer(btn,x,ans){if(answered)return;answered=true;document.querySelectorAll(".answer").forEach(b=>b.disabled=true);if(x===ans){btn.classList.add("correct");score+=10;correct++;document.getElementById("feedback").textContent="✅ ถูกต้อง! +10 คะแนน"}else{btn.classList.add("wrong");lives--;document.getElementById("lives").textContent=lives;document.querySelectorAll(".answer").forEach(b=>{if(b.textContent===ans)b.classList.add("correct")});document.getElementById("feedback").textContent="❌ คำตอบคือ “"+ans+"”"}document.getElementById("score").textContent=score;if(lives>0)document.getElementById("next").style.display="inline-block";else setTimeout(()=>finish(false),600)}
-function nextQ(){q++;if(q>=4)finish(true);else load()}
-function finish(done){let pct=correct*25,stars=pct===100?3:pct>=75?2:pct>=50?1:0;if(done&&pct>=75&&stage===unlocked&&unlocked<6){unlocked++;localStorage.setItem("wdUnlocked",unlocked)}if(stars>(best[stage]?.stars||0)){best[stage]={stars};localStorage.setItem("wdBest",JSON.stringify(best))}document.getElementById("resicon").textContent=done&&pct>=75?"🏆":"💪";document.getElementById("restitle").textContent=done&&pct>=75?"ด่านผ่าน!":"ลองอีกครั้ง";document.getElementById("resstage").textContent=`ด่าน ${stage+1} • ${stages[stage][1]}`;document.getElementById("resscore").textContent=score+" คะแนน";document.getElementById("resdetail").textContent=`ตอบถูก ${correct}/4 ข้อ • ${pct}% • ${"⭐".repeat(stars)}${"☆".repeat(3-stars)}`;document.getElementById("tip").textContent=done&&pct>=75?(stage<6?"🎉 ปลดล็อกด่านถัดไปแล้ว! กลับแผนที่เพื่อไปต่อ":"👑 สุดยอด! ผ่านครบทั้ง 7 ด่านแล้ว"):"💡 ต้องได้อย่างน้อย 75% เพื่อผ่านด่าน ลองใหม่ได้เลย";show("result")}
+function shuffle(arr){return arr.map(v=>({v,r:Math.random()})).sort((a,b)=>a.r-b.r).map(x=>x.v)}
+function startStage(i){stage=i;q=0;score=0;correct=0;lives=3;document.getElementById("score").textContent=0;document.getElementById("lives").textContent=3;show("quiz");load()}
+function load(){
+ answered=false;const d=stages[stage].questions[q];document.getElementById("stageTitle").textContent=`${stages[stage].icon} ${stages[stage].title} • ภารกิจ ${q+1}/5`;
+ document.getElementById("question").textContent=d.q;document.getElementById("bar").style.width=(q/5*100)+"%";
+ const answerObjs=d.choices.map((text,i)=>({text,correct:i===d.a}));const opts=shuffle(answerObjs);
+ const box=document.getElementById("answers");box.innerHTML="";
+ opts.forEach(o=>{const b=document.createElement("button");b.className="answer";b.textContent=o.text;b.dataset.correct=o.correct;b.onclick=()=>answer(b,o.correct,d);box.appendChild(b)});
+ document.getElementById("feedback").textContent="";document.getElementById("next").style.display="none";
+}
+function answer(btn,isCorrect,d){
+ if(answered)return;answered=true;document.querySelectorAll(".answer").forEach(b=>b.disabled=true);
+ if(isCorrect){btn.classList.add("correct");score+=10;correct++;document.getElementById("feedback").textContent="✅ ถูกต้อง! +10 คะแนน — "+d.e}
+ else{btn.classList.add("wrong");lives--;document.getElementById("lives").textContent=lives;document.querySelectorAll(".answer").forEach(b=>{if(b.dataset.correct==="true")b.classList.add("correct")});document.getElementById("feedback").textContent="❌ ยังไม่ใช่ — "+d.e}
+ document.getElementById("score").textContent=score;
+ if(lives>0)document.getElementById("next").style.display="inline-block";else setTimeout(()=>finish(false),700);
+}
+function nextQ(){q++;if(q>=5)finish(true);else load()}
+function finish(done){
+ const pct=correct*20;const stars=pct===100?3:pct>=80?2:pct>=60?1:0;
+ if(done&&pct>=80&&stage===unlocked&&unlocked<stages.length-1){unlocked++;localStorage.setItem("wdUnlockedV3",unlocked)}
+ if(stars>(best[stage]?.stars||0)){best[stage]={stars};localStorage.setItem("wdBestV3",JSON.stringify(best))}
+ document.getElementById("resicon").textContent=done&&pct>=80?"🏆":"💪";
+ document.getElementById("restitle").textContent=done&&pct>=80?"แฟ้มคดีผ่าน!":"ลองสืบใหม่อีกครั้ง";
+ document.getElementById("resstage").textContent=`${stages[stage].icon} ${stages[stage].title}`;
+ document.getElementById("resscore").textContent=score+" คะแนน";
+ document.getElementById("resdetail").textContent=`ตอบถูก ${correct}/5 ข้อ • ${pct}% • ${"⭐".repeat(stars)}${"☆".repeat(3-stars)}`;
+ document.getElementById("tip").textContent=done&&pct>=80?(stage<stages.length-1?"🎉 ปลดล็อกแฟ้มถัดไปแล้ว!":"👑 ผ่านครบทุกแฟ้มแล้ว"):"💡 ต้องได้อย่างน้อย 80% เพื่อผ่านแฟ้ม ลองใหม่ได้เลย";
+ show("result");
+}
 </script></body></html>
